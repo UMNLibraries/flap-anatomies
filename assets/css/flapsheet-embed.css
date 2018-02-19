@@ -1,0 +1,164 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+.flip-up-wrapper{
+    background-size:contain;
+    background-repeat:no-repeat;
+    width:500px;
+    position:relative;
+    -webkit-transform-origin:top left;
+    -ms-transform-origin:top left;
+    transform-origin:top left;
+    float: left;
+}
+.flip-up{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:none
+}
+.flip-up-component-wrapper{
+    position:absolute;
+    pointer-events:all
+}
+.flip-up-component-wrapper.active{
+    z-index:1000;
+    cursor:pointer !important
+}
+.flip-up-component-wrapper.previous{
+    cursor:pointer !important
+}
+.flip-up-component-wrapper.active:hover .component-border {
+    opacity:1
+}
+.flip-up-component-wrapper,.flip-up-component,.flip-up-back,.flip-up-shadow{
+    -webkit-transition:1s ease-in-out;
+    transition:1s ease-in-out;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    backface-visibility:hidden;
+    -webkit-perspective:1000;
+    -ms-perspective:1000;
+    perspective:1000
+}
+.flip-up-component{
+    -webkit-transform:translate3d(0, 0, 0);
+    position:relative;
+    background-size:cover;
+    width:100%;
+    height:100%;
+    overflow:hidden
+}
+.flip-up-component .component-img,
+.flip-up-component .component-border {
+    -webkit-transform:translate3d(0, 0, 0);
+    width:100%;
+    height:auto
+}
+.flip-up-component .component-border{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0
+}
+.flip-up-back, .flip-up-shadow{
+    -webkit-transform:translate3d(0, 0, 0);
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:0;
+    width:100%;
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    opacity: 0.75;
+}
+
+.component-1 {
+    z-index:7
+}
+.component-1 .flip-up-component {
+    z-index:60
+}
+.component-1 .flip-up-back {
+    z-index:70
+}
+.component-1 .flip-up-shadow {
+    z-index:65
+}
+.component-2 {
+    z-index:6
+}
+.component-2 .flip-up-component {
+    z-index:50
+}
+.component-2 .flip-up-back {
+    z-index:80
+}
+.component-2 .flip-up-shadow {
+    z-index:75
+}
+.component-3 {
+    z-index:5
+}
+.component-3 .flip-up-component {
+    z-index:40
+}
+.component-3 .flip-up-back {
+    z-index:90
+}
+.component-3 .flip-up-shadow {
+    z-index:85
+}
+.component-4 {
+    z-index:4
+}
+.component-4 .flip-up-component {
+    z-index:30
+}
+.component-4 .flip-up-back {
+    z-index:100
+}
+.component-4 .flip-up-shadow {
+    z-index:95
+}
+.component-5 {
+    z-index:3
+}
+.component-5 .flip-up-component {
+    z-index:20
+}
+.component-5 .flip-up-back {
+    z-index:110
+}
+.component-5 .flip-up-shadow {
+    z-index:105
+}
+.component-6 {
+    z-index:2
+}
+
+.component-6 .flip-up-back {
+    z-index:120
+}
+.component-6 .flip-up-shadow {
+    z-index:115
+}
+
+
+
+.flap-info{
+  width: 400px;
+  height: 400px;
+  float: right;
+  border-width: medium;
+  border-style: solid;
+  border-color: black;
+}

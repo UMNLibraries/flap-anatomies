@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="assets/scripts/jquery.min.js"></script>
+<link href="assets/css/reset.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/flapsheet-embed.css">
+<script src="assets/scripts/mustache.min.js"></script>
+<script src="components/flap-configuration.js"></script>
+<script type="x-tmpl-mustache" id="component-markup">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}}" id="component-{{idx}}">
+        {{#component}}
+        <div class="flip-up-component">
+            <img src="{{component.src}}" class="component-img" />
+            <img src="{{component.border_src}}" class="component-border" />
+
+        </div>
+        <div class="flip-up-back" style="background-image: url({{component.shadow_src}});">
+
+        </div>
+        {{/component}}
+    </div>
+</script>
+
+
+<!-- feature detection for HTML5/CSS3 -->
+<script src="assets/scripts/flapsheet-embed.js"></script>
+
+</head>
+<body>
+    <div class="flip-up-wrapper">
+        <div class="flip-up"></div>
+    </div>
+    <div class="flap-info">
+      <div id="custom-description"> </div> 
+    </div>
+</body>
+</html>
