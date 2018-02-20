@@ -31,9 +31,9 @@ $(document).ready(function(){
         // and scaling of the components.
         $markup.css({
             top: component.y + '%',
-            left: component.x + '%',
+            right: 100 - component.x - component.w + '%',
             height: component.h + '%',
-            maxHeight: component.h + '%',
+            maxWidth: component.w + '%',
             width: component.w + '%'
         })
         // Configure the first flap as the 'active' flap. That is, the one that will receive clicks
@@ -53,7 +53,7 @@ $(document).ready(function(){
     // Configure the max height for all relevant component classes. This ensures
     // that the components are properly rendered.
 	$('.flip-up-back, .flip-up-component, .flip-up-shadow').each(function(){
-		$(this).css('max-height', $(this).parent().css('height'));
+		$(this).css('max-width', $(this).parent().css('width'));
 	})
 
 	var index = 0,
@@ -73,7 +73,7 @@ $(document).ready(function(){
 		this.self = $( '#' + elem );
 		this.back = this.self.find( '.flip-up-back' );
 		this.shadow = this.self.find( '.flip-up-shadow' );
-		this.initHeight = this.self.height();
+		this.initWidth = this.self.width();
 
 
         // Configure the click event on the component object. On click, this first checks to see
@@ -86,7 +86,7 @@ $(document).ready(function(){
         // reveal its front.
 		this.self.click(function( ){
 			if ($(this).hasClass('active')){
-				if( $(this).hasClass('last') && $(this).height() == 0){
+				if( $(this).hasClass('last') && $(this).width() == 0){
 					updateCurrentActive('last', figure );
 				} else {
 					updateCurrentActive('up', figure );
@@ -158,9 +158,9 @@ $(document).ready(function(){
 	function autoDrag( component , direction , figure ){
 
 		if( direction == 'up' ){
-			component.self.removeClass('active').css( 'height' , 0 ).css('z-index', 1000 );
-			component.back.css( 'height' , component.initHeight );
-			component.shadow.css( 'height' , component.initHeight );
+			component.self.removeClass('active').css( 'width' , 0 ).css('z-index', 70 );
+			component.back.css( 'width' , component.initWidth );
+			component.shadow.css( 'width' , component.initWidth );
 			if( component.self.next( '.flip-up-component-wrapper')[0] ){
 				setTimeout(function(){
                     $('.previous').removeClass('previous');
@@ -175,14 +175,14 @@ $(document).ready(function(){
             $('.previous').removeClass('previous').addClass('active');
 
 			prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
-			prevComponent.self.css( 'height' , prevComponent.initHeight ).css('z-index', '');
-			prevComponent.back.css( 'height' , 0 );
-			prevComponent.shadow.css( 'height' , 0 );
+			prevComponent.self.css( 'width' , prevComponent.initWidth ).css('z-index', '');
+			prevComponent.back.css( 'width' , 0 );
+			prevComponent.shadow.css( 'width' , 0 );
 		} else if (direction == 'last' ){
 			component.self.prev('.flip-up-component-wrapper').addClass('previous');
-			component.self.css( 'height' , component.initHeight );
-			component.back.css( 'height' , 0 );
-			component.shadow.css( 'height' , 0 );
+			component.self.css( 'width' , component.initWidth );
+			component.back.css( 'width' , 0 );
+			component.shadow.css( 'width' , 0 );
 		}
 	}
   ////// new addition
@@ -205,6 +205,9 @@ $(document).ready(function(){
         text = "<p> component 4 description... ... ... </p>";
       }
       if (currentActive == 5){
+        text = "<p> component 5 description... ... ... </p>";
+      }
+      if (currentActive == 6){
         text = "<p> this is the bottom layer </p>";
       }
       $( "#custom-description" ).html(text);
