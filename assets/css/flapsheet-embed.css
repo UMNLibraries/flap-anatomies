@@ -5,7 +5,6 @@ html,body{
 .flip-up-wrapper{
     background-size:contain;
     background-repeat:no-repeat;
-    width:500px;
     position:relative;
     -webkit-transform-origin:top left;
     -ms-transform-origin:top left;
@@ -159,14 +158,11 @@ html,body{
 }
 
 
-
 .flap-info{
+    overflow:hidden;
+    text-align: center;
     background-color: white;
-    position: fixed;
-    left: 15px;
-  width: 400px;
-  height: 400px;
-  border-width: medium;
-  border-style: solid;
-  border-color: black;
+    border-width: medium;
+    border-style: solid;
+    border-color: black;
 }
