@@ -163,7 +163,7 @@ $(document).ready(function(){
 			component.shadow.css( 'width' , component.initWidth );
 			if( component.self.next( '.flip-up-component-wrapper')[0] ){
 				setTimeout(function(){
-                    $('.previous').removeClass('previous');
+          $('.previous').removeClass('previous');
 					component.self.addClass('previous');
 					component.self.next('.flip-up-component-wrapper').addClass('active');
 				},500);

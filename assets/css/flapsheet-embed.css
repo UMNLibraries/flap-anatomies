@@ -30,9 +30,10 @@ html,body{
 .flip-up-component-wrapper.previous{
     cursor:pointer !important
 }
-.flip-up-component-wrapper.active:hover .component-border {
+.flip-up-component-wrapper.active .component-border {
     opacity:1
 }
+
 .flip-up-component-wrapper,.flip-up-component,.flip-up-back,.flip-up-shadow{
     -webkit-transition:1s ease-in-out;
     transition:1s ease-in-out;
@@ -59,6 +60,7 @@ html,body{
     width:auto;
     height:100%
 }
+
 .flip-up-component .component-border{
     width:100%;
     height:100%;
@@ -68,19 +70,15 @@ html,body{
     opacity:0
 }
 .flip-up-back, .flip-up-shadow{
-    -webkit-transform-origin:right center;
-    -ms-transform-origin:right center;
-    transform-origin:right center;
     -webkit-transform:translate3d(0, 0, 0);
     position:absolute;
     bottom:0;
     left:0;
     height:100%;
     width:0;
-    background-size:100% auto;
     background-repeat:no-repeat;
     overflow:hidden;
-    opacity: 0.75;
+    opacity: 1;
 }
 
 .component-1 {
