@@ -6,17 +6,18 @@
 <link href="assets/css/reset.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/flapsheet-embed.css">
 <script src="assets/scripts/mustache.min.js"></script>
-<script src="components/flap-configuration.js"></script>
+<script src="Components/latest/flap-configuration.js"></script>
 <script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}}" id="component-{{idx}}">
         {{#component}}
-        <div class="flip-up-component">
-            <img src="{{component.src}}" class="component-img" />
-            <img src="{{component.border_src}}" class="component-border" />
-
-        </div>
-        <div class="flip-up-back" style="background-image: url({{component.shadow_src}});">
-
+        <div class="flipper">
+            <div class="front flip-up-component">
+                <img src="{{baseUrl}}/{{component.src}}" class="component-img" />
+                <img src="{{baseUrl}}/{{component.border_src}}" class="component-border" />
+            </div>
+            <div class="back flip-up-back">
+                <img src="{{baseUrl}}/{{component.shadow_src}}"/>
+            </div>
         </div>
         {{/component}}
     </div>
