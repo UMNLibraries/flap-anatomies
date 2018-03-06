@@ -1,85 +1,101 @@
 html,body{
     width:100%;
     height:100%;
+    padding: 0;
 }
 .flip-up-wrapper{
     background-size:contain;
     background-repeat:no-repeat;
     position:relative;
-    -webkit-transform-origin:top left;
-    -ms-transform-origin:top left;
-    transform-origin:top left;
     float: left;
 }
-.flip-up{
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0;
-    right:0;
-    pointer-events:none
-}
+
 .flip-up-component-wrapper{
     position:absolute;
     pointer-events:all
 }
 .flip-up-component-wrapper.active{
-    z-index:70;
+    z-index:1000;
     cursor:pointer !important
 }
 .flip-up-component-wrapper.previous{
     cursor:pointer !important
 }
-.flip-up-component-wrapper.active .component-border {
-    opacity:1
-}
 
-.flip-up-component-wrapper,.flip-up-component,.flip-up-back,.flip-up-shadow{
-    -webkit-transition:1s ease-in-out;
-    transition:1s ease-in-out;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
-    -webkit-backface-visibility:hidden;
-    -ms-backface-visibility:hidden;
-    backface-visibility:hidden;
-    -webkit-perspective:1000;
-    -ms-perspective:1000;
-    perspective:1000
-}
-.flip-up-component{
-    -webkit-transform:translate3d(0, 0, 0);
-    position:relative;
-    background-size:cover;
-    width:100%;
-    height:100%;
-    overflow:hidden
-}
-.flip-up-component .component-img,
-.flip-up-component .component-border {
-    -webkit-transform:translate3d(0, 0, 0);
-    width:auto;
-    height:100%
-}
-
-.flip-up-component .component-border{
+.component-border{
     width:100%;
     height:100%;
     position:absolute;
     top:0;
-    right:0;
-    opacity:0
-}
-.flip-up-back, .flip-up-shadow{
-    -webkit-transform:translate3d(0, 0, 0);
-    position:absolute;
-    bottom:0;
     left:0;
-    height:100%;
-    width:0;
-    background-repeat:no-repeat;
-    overflow:hidden;
+    opacity: 0;
+}
+
+.flip-up-wrapper:hover .active .component-border {
     opacity: 1;
 }
+
+/* entire container, keeps perspective */
+.flip-up-component-wrapper {
+	perspective: 1000px;
+}
+    /* flip the pane when hovered */
+    .flip-dir-left .flipped .flipper {
+        transform: rotateY(-180deg);
+    }
+	.flip-dir-right .flipped .flipper {
+		transform: rotateY(180deg);
+    }
+    
+    .flip-dir-up .flipped .flipper {
+        transform: rotateX(180deg);
+    }
+
+    .flip-dir-down .flipped .flipper {
+        transform: rotateX(-180deg);
+    }
+
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+    transform-style: preserve-3d;
+	position: relative;
+}
+    .flip-dir-up .flipper {
+        transform-origin: center top;
+    }
+
+    .flip-dir-down .flipper {
+        transform-origin: center bottom;
+    }
+
+    .flip-dir-left .flipper {
+        transform-origin: left center;
+    }
+
+    .flip-dir-right .flipper {
+        transform-origin: right center;
+    }
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.flip-dir-left .back,
+.flip-dir-right .back {
+    transform: rotateY(180deg);
+}
+
+.flip-dir-up .back,
+.flip-dir-down .back {
+    transform: rotateX(180deg);
+}
+
 
 .component-1 {
     z-index:7
@@ -102,9 +118,6 @@ html,body{
 .component-2 .flip-up-back {
     z-index:80
 }
-.component-2 .flip-up-shadow {
-    z-index:75
-}
 .component-3 {
     z-index:5
 }
@@ -113,9 +126,6 @@ html,body{
 }
 .component-3 .flip-up-back {
     z-index:90
-}
-.component-3 .flip-up-shadow {
-    z-index:85
 }
 .component-4 {
     z-index:4
@@ -126,9 +136,6 @@ html,body{
 .component-4 .flip-up-back {
     z-index:100
 }
-.component-4 .flip-up-shadow {
-    z-index:95
-}
 .component-5 {
     z-index:3
 }
@@ -138,9 +145,6 @@ html,body{
 .component-5 .flip-up-back {
     z-index:110
 }
-.component-5 .flip-up-shadow {
-    z-index:105
-}
 .component-6 {
     z-index:2
 }
@@ -148,19 +152,14 @@ html,body{
 .component-6 .flip-up-back {
     z-index:120
 }
-.component-6 .flip-up-shadow {
-    z-index:115
-}
-.component-border {
-    z-index: -1;
-}
+
 
 
 .flap-info{
-    overflow:hidden;
-    text-align: center;
-    background-color: white;
-    border-width: medium;
-    border-style: solid;
-    border-color: black;
+  width: 400px;
+  height: 400px;
+  float: right;
+  border-width: medium;
+  border-style: solid;
+  border-color: black;
 }

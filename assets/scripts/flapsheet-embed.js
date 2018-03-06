@@ -9,8 +9,14 @@ $(document).ready(function(){
     $wrapper.css({
         'width': FlapConfiguration.background.width,
         'height': FlapConfiguration.background.height,
-        'background-image': 'url(' + FlapConfiguration.background.path + ')'
+        'background-image': 'url(' + FlapConfiguration['base-url'] + '/' + FlapConfiguration.background.path + ')',
+        'perspective:': FlapConfiguration.background.width
     });
+    
+    var flipDir = FlapConfiguration['flip-dir'];
+    var baseUrl = FlapConfiguration['base-url'];
+    
+    $wrapper.addClass('flip-dir-' + flipDir);
 
     // Clear out any HTML currently in the target .flip-up element. This ensures we start
     // with a clean slate.
@@ -25,19 +31,20 @@ $(document).ready(function(){
     for(var flap in FlapConfiguration.components) {
         var component = FlapConfiguration.components[flap];
         // Create the HTML markup for this component.
-        var $markup = $(Mustache.render(componentTemplate, {'idx': idx, 'component': component}));
+        var $markup = $(Mustache.render(componentTemplate, {'baseUrl': baseUrl, 'idx': idx, 'component': component}));
 
         // Apply custom CSS specific to this component. It's necessary to ensure proper positioning
         // and scaling of the components.
         $markup.css({
             top: component.y + '%',
-            right: 100 - component.x - component.w + '%',
+            left: component.x + '%',
             height: component.h + '%',
-            maxWidth: component.w + '%',
+            maxHeight: component.h + '%',
             width: component.w + '%'
         })
         // Configure the first flap as the 'active' flap. That is, the one that will receive clicks
-        .toggleClass('active', idx==1);
+        .toggleClass('active', idx==1)
+        .data('desc', component.desc);
 
         // Append the generated markup to the .flip-up div
         $wrapper.find('.flip-up').append($markup);
@@ -50,21 +57,9 @@ $(document).ready(function(){
 
     $wrapper.find('.flip-up').append($lastComponent);
 
-    // Configure the max height for all relevant component classes. This ensures
-    // that the components are properly rendered.
-	$('.flip-up-back, .flip-up-component, .flip-up-shadow').each(function(){
-		$(this).css('max-width', $(this).parent().css('width'));
-	})
-
 	var index = 0,
 		currentActive = 0,
 		components = [];
-
-    ////// new addition
-    // must load description here because the function updateCurrentActive() has not been called yet
-    //////
-    var componentZeroDescription = "<p> component 0 description... ... ... </p>";
-    $( "#custom-description" ).html(componentZeroDescription);
 
     // Create a new pseudo-class to represent a component. This will allow for better handling
     // of click events in a structured way.
@@ -72,8 +67,7 @@ $(document).ready(function(){
 		this.index = index;
 		this.self = $( '#' + elem );
 		this.back = this.self.find( '.flip-up-back' );
-		this.shadow = this.self.find( '.flip-up-shadow' );
-		this.initWidth = this.self.width();
+		this.initHeight = this.self.height();
 
 
         // Configure the click event on the component object. On click, this first checks to see
@@ -86,7 +80,7 @@ $(document).ready(function(){
         // reveal its front.
 		this.self.click(function( ){
 			if ($(this).hasClass('active')){
-				if( $(this).hasClass('last') && $(this).width() == 0){
+				if( $(this).hasClass('last') && ($(this).height() == 0 || $(this).width() == 0)){
 					updateCurrentActive('last', figure );
 				} else {
 					updateCurrentActive('up', figure );
@@ -105,7 +99,7 @@ $(document).ready(function(){
     // each component found
 	while( $('.component-' + i).length){
 		var component = new Component( 'component-' + i );
-    components.push(component);
+        components.push(component);
 		i++;
 	}
 
@@ -129,7 +123,7 @@ $(document).ready(function(){
     /**
      * In order to simulate the drag functionality, the flap anatomy makes use of CSS transitions,
        like shown here (the below is from `flapsheet-embed.css`):
-         .flip-up-component-wrapper,.flip-up-component,.flip-up-back,.flip-up-shadow{
+         .flip-up-component-wrapper,.flip-up-component,.flip-up-back {
             -webkit-transition:1s ease-in-out;
             transition:1s ease-in-out;
             -moz-box-sizing:border-box;
@@ -158,12 +152,12 @@ $(document).ready(function(){
 	function autoDrag( component , direction , figure ){
 
 		if( direction == 'up' ){
-			component.self.removeClass('active').css( 'width' , 0 ).css('z-index', 70 );
-			component.back.css( 'width' , component.initWidth );
-			component.shadow.css( 'width' , component.initWidth );
+            component.self.addClass('flipped');
+			component.self.removeClass('active').css('z-index', 1000 );
+
 			if( component.self.next( '.flip-up-component-wrapper')[0] ){
 				setTimeout(function(){
-          $('.previous').removeClass('previous');
+                    $('.previous').removeClass('previous');
 					component.self.addClass('previous');
 					component.self.next('.flip-up-component-wrapper').addClass('active');
 				},500);
@@ -172,44 +166,22 @@ $(document).ready(function(){
 			var prevComponent;
             prevComponent = components[component.index - 1];
             $('.active').removeClass('active');
-            $('.previous').removeClass('previous').addClass('active');
+            $('.previous').removeClass('previous').removeClass('flipped').addClass('active');
 
 			prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
-			prevComponent.self.css( 'width' , prevComponent.initWidth ).css('z-index', '');
-			prevComponent.back.css( 'width' , 0 );
-			prevComponent.shadow.css( 'width' , 0 );
+			prevComponent.self.css('z-index', '');
 		} else if (direction == 'last' ){
 			component.self.prev('.flip-up-component-wrapper').addClass('previous');
-			component.self.css( 'width' , component.initWidth );
-			component.back.css( 'width' , 0 );
-			component.shadow.css( 'width' , 0 );
 		}
 	}
+    
+    changeDescription();
+    
   ////// new addition
   // dynamically change text in description based on what CurrentActive is set to
+  // new addition
+  // dynamically change text in description based on what CurrentActive is set to
   function changeDescription(){
-      var text;
-      if (currentActive == 0){
-        text = "<p> component 0 description... ... ... </p>";
-      }
-      if (currentActive == 1){
-        text = "<p> component 1 description... ... ... </p>";
-      }
-      if (currentActive == 2){
-        text = "<p> component 2 description... ... ... </p>";
-      }
-      if (currentActive == 3){
-        text = "<p> component 3 description... ... ... </p>";
-      }
-      if (currentActive == 4){
-        text = "<p> component 4 description... ... ... </p>";
-      }
-      if (currentActive == 5){
-        text = "<p> component 5 description... ... ... </p>";
-      }
-      if (currentActive == 6){
-        text = "<p> this is the bottom layer </p>";
-      }
-      $( "#custom-description" ).html(text);
+      $( "#custom-description" ).html(components[currentActive].self.data('desc'));
   }
 });
