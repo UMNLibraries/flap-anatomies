@@ -12,10 +12,10 @@ $(document).ready(function(){
         'background-image': 'url(' + FlapConfiguration['base-url'] + '/' + FlapConfiguration.background.path + ')',
         'perspective:': FlapConfiguration.background.width
     });
-    
+
     var flipDir = FlapConfiguration['flip-dir'];
     var baseUrl = FlapConfiguration['base-url'];
-    
+
     $wrapper.addClass('flip-dir-' + flipDir);
 
     // Clear out any HTML currently in the target .flip-up element. This ensures we start
@@ -174,14 +174,82 @@ $(document).ready(function(){
 			component.self.prev('.flip-up-component-wrapper').addClass('previous');
 		}
 	}
-    
+
     changeDescription();
-    
+
   ////// new addition
   // dynamically change text in description based on what CurrentActive is set to
   // new addition
   // dynamically change text in description based on what CurrentActive is set to
   function changeDescription(){
       $( "#custom-description" ).html(components[currentActive].self.data('desc'));
+      var selector = components[currentActive].index;
+
+
+
+      if (selector == 0){
+        // Scroll to a certain element
+        document.querySelector('#zero').scrollIntoView({
+          behavior: 'smooth'
+        });
+        // highlight component zero description, remove highlight from component one description
+        // in the scenario that you are un-flapping
+        $("#zero").css('font-weight', 'bold');
+        $("#one").css('font-weight', '');
+
+      }
+      if (selector == 1){
+        // Scroll to a certain element
+        document.querySelector('#one').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#zero").css('font-weight', '');
+        $("#one").css('font-weight', 'bold');
+        $("#two").css('font-weight', '');
+      }
+      if (selector == 2){
+        // Scroll to a certain element
+        document.querySelector('#two').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#one").css('font-weight', '');
+        $("#two").css('font-weight', 'bold');
+        $("#three").css('font-weight', '');
+      }
+      if (selector == 3){
+        // Scroll to a certain element
+        document.querySelector('#three').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#two").css('font-weight', '');
+        $("#three").css('font-weight', 'bold');
+        $("#four").css('font-weight', '');
+      }
+      if (selector == 4){
+        // Scroll to a certain element
+        document.querySelector('#four').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#three").css('font-weight', '');
+        $("#four").css('font-weight', 'bold');
+        $("#five").css('font-weight', '');
+      }
+      if (selector == 5){
+        // Scroll to a certain element
+        document.querySelector('#five').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#four").css('font-weight', '');
+        $("#five").css('font-weight', 'bold');
+        $("#six").css('font-weight', '');
+      }
+      if (selector == 6){
+        // Scroll to a certain element
+        document.querySelector('#six').scrollIntoView({
+          behavior: 'smooth'
+        });
+        $("#five").css('font-weight', '');
+        $("#six").css('font-weight', 'bold');
+      }
   }
 });

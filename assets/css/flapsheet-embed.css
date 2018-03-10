@@ -46,7 +46,7 @@ html,body{
 	.flip-dir-right .flipped .flipper {
 		transform: rotateY(180deg);
     }
-    
+
     .flip-dir-up .flipped .flipper {
         transform: rotateX(180deg);
     }
@@ -156,9 +156,9 @@ html,body{
 
 
 .flap-info{
-  width: 400px;
-  height: 400px;
-  float: right;
+  overflow: hidden;
+  width: auto;
+  height: 100%;
   border-width: medium;
   border-style: solid;
   border-color: black;
