@@ -176,6 +176,7 @@ $(document).ready(function(){
 	}
 
     changeDescription();
+    $(".flap-info").css({'height': FlapConfiguration.background.height});
 
   ////// new addition
   // dynamically change text in description based on what CurrentActive is set to
@@ -187,7 +188,7 @@ $(document).ready(function(){
 
 
 
-      if (selector == 0){
+ /*     if (selector == 0){
         // Scroll to a certain element
         document.querySelector('#zero').scrollIntoView({
           behavior: 'smooth'
@@ -251,5 +252,52 @@ $(document).ready(function(){
         $("#five").css('font-weight', '');
         $("#six").css('font-weight', 'bold');
       }
+      */
+
+      if (selector == 0){
+        $("#zero").removeClass("hidden");
+        $("#one").addClass("hidden");
+      }
+      if (selector == 1){
+        $("#one").removeClass("hidden");
+        $("#zero").addClass("hidden");
+        $("#two").addClass("hidden");
+      }
+      if (selector == 2){
+        $("#two").removeClass("hidden");
+        $("#one").addClass("hidden");
+        $("#three").addClass("hidden");
+      }
+      if (selector == 3){
+        $("#three").removeClass("hidden");
+        $("#two").addClass("hidden");
+        $("#four").addClass("hidden");
+      }
+      if (selector == 4){
+        $("#four").removeClass("hidden");
+        $("#three").addClass("hidden");
+        $("#five").addClass("hidden");
+      }
+      if (selector == 5){
+        $("#five").removeClass("hidden");
+        $("#four").addClass("hidden");
+        $("#six").addClass("hidden");
+      }
+      if (selector == 6){
+        $("#six").removeClass("hidden");
+        $("#five").addClass("hidden");
+      }
   }
+
+  //hover to show border both on front flip-up-component active and the previous
+  //flip-up component
+
+/*  $('.flip-up-component-wrapper .active').hover(function(){
+    $(this).find('.component-border').css({'opacity': 1});
+    console.log('Hi!');
+  }, function(){
+    $(this).find('.component-border').css({'opacity': 0});
+    console.log('NO!');
+  });*/
+
 });

@@ -2,7 +2,14 @@ html,body{
     width:100%;
     height:100%;
     padding: 0;
+    box-sizing: border-box;
 }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
 .flip-up-wrapper{
     background-size:contain;
     background-repeat:no-repeat;
@@ -31,7 +38,11 @@ html,body{
     opacity: 0;
 }
 
-.flip-up-wrapper:hover .active .component-border {
+/*.flip-up-wrapper:hover .active .component-border {
+    opacity: 1;
+}*/
+
+.component-border:hover {
     opacity: 1;
 }
 
@@ -155,11 +166,31 @@ html,body{
 
 
 
-.flap-info{
-  overflow: hidden;
-  width: auto;
-  height: 100%;
-  border-width: medium;
-  border-style: solid;
-  border-color: black;
+.flap-info {
+    position: absolute;
+    overflow: hidden;
+    width: 20%;
+    top: 0;
+    left: 20%;
+    padding: 30px;
+    background-color: black;
+    color: white;
+    opacity: 0.75;
+}
+
+.section {
+    font-size: 1.1em;
+    line-height: 1.7em;
+}
+
+#custom-description {
+    font-size: 2.3em;
+    font-weight: bold;
+    margin-top: 30%;
+    margin-bottom: 10%;
+    font-family: sans-serif;
+}
+
+.hidden {
+    display: none;
 }
