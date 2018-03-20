@@ -183,9 +183,15 @@ $(document).ready(function(){
   // new addition
   // dynamically change text in description based on what CurrentActive is set to
   function changeDescription(){
-      $( "#custom-description" ).html(components[currentActive].self.data('desc'));
       var selector = components[currentActive].index;
 
+      // we have 5 flaps, bottom layer=6 so it gets custom text
+      var customText = "<h1>bottom of flap anatomy</h1>";
+      if (selector != 6){
+        $( "#custom-description" ).html(components[currentActive].self.data('desc'));
+      } else {
+        $( "#custom-description" ).html(customText);
+      }
 
 
  /*     if (selector == 0){
@@ -284,7 +290,6 @@ $(document).ready(function(){
         $("#six").addClass("hidden");
       }
       if (selector == 6){
-        $("#six").removeClass("hidden");
         $("#five").addClass("hidden");
       }
   }
