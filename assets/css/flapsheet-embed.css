@@ -194,3 +194,7 @@ html,body{
 .hidden {
     display: none;
 }
+
+#indicators {
+    text-align: center;
+}

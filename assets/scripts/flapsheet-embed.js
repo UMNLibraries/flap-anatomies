@@ -178,6 +178,29 @@ $(document).ready(function(){
     changeDescription();
     $(".flap-info").css({'height': FlapConfiguration.background.height});
 
+  function removeIndicators(num){
+    if (num != 0){
+      $("#i_zero").css('color', '');
+    }
+    if (num != 1){
+      $("#i_one").css('color', '');
+    }
+    if (num != 2){
+      $("#i_two").css('color', '');
+    }
+    if (num != 3){
+      $("#i_three").css('color', '');
+    }
+    if (num != 4){
+      $("#i_four").css('color', '');
+    }
+    if (num != 5){
+      $("#i_five").css('color', '');
+    }
+    if (num != 6){
+      $("#i_six").css('color', '');
+    }
+  }
   ////// new addition
   // dynamically change text in description based on what CurrentActive is set to
   // new addition
@@ -263,34 +286,48 @@ $(document).ready(function(){
       if (selector == 0){
         $("#zero").removeClass("hidden");
         $("#one").addClass("hidden");
+        $("#i_zero").css('color', 'yellow');
+        removeIndicators(0);
       }
       if (selector == 1){
         $("#one").removeClass("hidden");
         $("#zero").addClass("hidden");
         $("#two").addClass("hidden");
+        $("#i_one").css('color', 'yellow');
+        removeIndicators(1);
       }
       if (selector == 2){
         $("#two").removeClass("hidden");
         $("#one").addClass("hidden");
         $("#three").addClass("hidden");
+        $("#i_two").css('color', 'yellow');
+        removeIndicators(2);
       }
       if (selector == 3){
         $("#three").removeClass("hidden");
         $("#two").addClass("hidden");
         $("#four").addClass("hidden");
+        $("#i_three").css('color', 'yellow');
+        removeIndicators(3);
       }
       if (selector == 4){
         $("#four").removeClass("hidden");
         $("#three").addClass("hidden");
         $("#five").addClass("hidden");
+        $("#i_four").css('color', 'yellow');
+        removeIndicators(4);
       }
       if (selector == 5){
         $("#five").removeClass("hidden");
         $("#four").addClass("hidden");
         $("#six").addClass("hidden");
+        $("#i_five").css('color', 'yellow');
+        removeIndicators(5);
       }
       if (selector == 6){
         $("#five").addClass("hidden");
+        $("#i_six").css('color', 'yellow');
+        removeIndicators(6);
       }
   }
 
