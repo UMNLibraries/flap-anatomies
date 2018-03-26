@@ -209,7 +209,7 @@ $(document).ready(function(){
       var selector = components[currentActive].index;
 
       // we have 5 flaps, bottom layer=6 so it gets custom text
-      var customText = "<h1>bottom of flap anatomy</h1>";
+      var customText = "<h1>Last Component</h1>";
       if (selector != 6){
         $( "#custom-description" ).html(components[currentActive].self.data('desc'));
       } else {

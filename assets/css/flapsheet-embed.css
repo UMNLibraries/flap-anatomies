@@ -42,7 +42,7 @@ html,body{
     opacity: 1;
 }*/
 
-.component-border:hover {
+.flip-up:hover .active .component-border {
     opacity: 1;
 }
 
@@ -171,11 +171,11 @@ html,body{
     overflow: hidden;
     width: 20%;
     top: 0;
-    left: 20%;
+    right: 0;
     padding: 30px;
     background-color: black;
     color: white;
-    opacity: 0.75;
+    z-index: 10000;
 }
 
 .section {
