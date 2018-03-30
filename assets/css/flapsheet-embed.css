@@ -167,9 +167,7 @@ html,body{
 
 
 .flap-info {
-    position: absolute;
     overflow: hidden;
-    width: 20%;
     top: 0;
     right: 0;
     padding: 30px;
@@ -198,3 +196,5 @@ html,body{
 #indicators {
     text-align: center;
 }
+
+span { cursor: pointer; }

@@ -57,9 +57,22 @@ $(document).ready(function(){
 
     $wrapper.find('.flip-up').append($lastComponent);
 
-	var index = 0,
+	  var index = 0,
 		currentActive = 0,
 		components = [];
+
+    function clickIndicator(){
+      console.log(currentActive);
+    }
+    // add onclick functions to each indicator
+    $("#i_zero").click(clickIndicator);
+    $("#i_one").click(clickIndicator);
+    $("#i_two").click(clickIndicator);
+    $("#i_three").click(clickIndicator);
+    $("#i_four").click(clickIndicator);
+    $("#i_five").click(clickIndicator);
+    $("#i_six").click(clickIndicator);
+
 
     // Create a new pseudo-class to represent a component. This will allow for better handling
     // of click events in a structured way.
@@ -201,7 +214,7 @@ $(document).ready(function(){
       $("#i_six").css('color', '');
     }
   }
-  ////// new addition
+
   // dynamically change text in description based on what CurrentActive is set to
   // new addition
   // dynamically change text in description based on what CurrentActive is set to
@@ -215,73 +228,6 @@ $(document).ready(function(){
       } else {
         $( "#custom-description" ).html(customText);
       }
-
-
- /*     if (selector == 0){
-        // Scroll to a certain element
-        document.querySelector('#zero').scrollIntoView({
-          behavior: 'smooth'
-        });
-        // highlight component zero description, remove highlight from component one description
-        // in the scenario that you are un-flapping
-        $("#zero").css('font-weight', 'bold');
-        $("#one").css('font-weight', '');
-
-      }
-      if (selector == 1){
-        // Scroll to a certain element
-        document.querySelector('#one').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#zero").css('font-weight', '');
-        $("#one").css('font-weight', 'bold');
-        $("#two").css('font-weight', '');
-      }
-      if (selector == 2){
-        // Scroll to a certain element
-        document.querySelector('#two').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#one").css('font-weight', '');
-        $("#two").css('font-weight', 'bold');
-        $("#three").css('font-weight', '');
-      }
-      if (selector == 3){
-        // Scroll to a certain element
-        document.querySelector('#three').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#two").css('font-weight', '');
-        $("#three").css('font-weight', 'bold');
-        $("#four").css('font-weight', '');
-      }
-      if (selector == 4){
-        // Scroll to a certain element
-        document.querySelector('#four').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#three").css('font-weight', '');
-        $("#four").css('font-weight', 'bold');
-        $("#five").css('font-weight', '');
-      }
-      if (selector == 5){
-        // Scroll to a certain element
-        document.querySelector('#five').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#four").css('font-weight', '');
-        $("#five").css('font-weight', 'bold');
-        $("#six").css('font-weight', '');
-      }
-      if (selector == 6){
-        // Scroll to a certain element
-        document.querySelector('#six').scrollIntoView({
-          behavior: 'smooth'
-        });
-        $("#five").css('font-weight', '');
-        $("#six").css('font-weight', 'bold');
-      }
-      */
 
       if (selector == 0){
         $("#zero").removeClass("hidden");
