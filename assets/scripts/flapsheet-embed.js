@@ -1,5 +1,5 @@
-// Run the function passed in when the page fully loads. This ensures that all appropriate markup
-// is in place.
+// Run the function passed in when the page fully loads. This ensures that all appropriate markup is in place.
+
 $(document).ready(function(){
     // Get the wrapper HTML element for the flap anatomy and store it in $wrapper
     var $wrapper = $('.flip-up-wrapper');
@@ -61,27 +61,44 @@ $(document).ready(function(){
 		currentActive = 0,
 		components = [];
 
-    function clickIndicator(){
-      console.log(currentActive);
+    function clickIndicator(id){
+        var id = id.slice(2);
+        console.log("indicator clicked: " + id);
+        // magic happens that switches to the flap with id=id
     }
+
     // add onclick functions to each indicator
-    $("#i_zero").click(clickIndicator);
-    $("#i_one").click(clickIndicator);
-    $("#i_two").click(clickIndicator);
-    $("#i_three").click(clickIndicator);
-    $("#i_four").click(clickIndicator);
-    $("#i_five").click(clickIndicator);
-    $("#i_six").click(clickIndicator);
+    $("#i_zero").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_one").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_two").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_three").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_four").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_five").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_six").on( "click", function() {
+        clickIndicator(this.id);
+    });
+
 
 
     // Create a new pseudo-class to represent a component. This will allow for better handling
     // of click events in a structured way.
-	var Component = function( elem , figure ){
-		this.index = index;
-		this.self = $( '#' + elem );
-		this.back = this.self.find( '.flip-up-back' );
-		this.initHeight = this.self.height();
-
+    var Component = function( elem , figure ){
+		    this.index = index;
+		    this.self = $( '#' + elem );
+		    this.back = this.self.find( '.flip-up-back' );
+		    this.initHeight = this.self.height();
 
         // Configure the click event on the component object. On click, this first checks to see
         // if the component has the 'active' class. If so, and it's not the last component in
@@ -91,46 +108,46 @@ $(document).ready(function(){
         //
         // If the component isn't active, then we assume we're flipping the component back down to
         // reveal its front.
-		this.self.click(function( ){
-			if ($(this).hasClass('active')){
-				if( $(this).hasClass('last') && ($(this).height() == 0 || $(this).width() == 0)){
-					updateCurrentActive('last', figure );
-				} else {
-					updateCurrentActive('up', figure );
-				}
+
+		   this.self.click(function(){
+			 if ($(this).hasClass('active')){
+			     if( $(this).hasClass('last') && ($(this).height() == 0 || $(this).width() == 0)){
+					     updateCurrentActive('last', figure );
+				   } else {
+					     updateCurrentActive('up', figure );
+				   }
 			}
 			if ($(this).hasClass('previous')){
-                updateCurrentActive('down', figure);
-            }
-        });
-
-		index++;
+          updateCurrentActive('down', figure);
+      }
+      });
+      index++;
 	}
 
 	var i = 1;
-    // Initialize the component list, creating the pseudo-class described above for
-    // each component found
+  // Initialize the component list, creating the pseudo-class described above for
+  // each component found
 	while( $('.component-' + i).length){
-		var component = new Component( 'component-' + i );
-        components.push(component);
-		i++;
+	     var component = new Component( 'component-' + i );
+       components.push(component);
+		   i++;
 	}
 
-    // Helper method for configuring the current active state. currentActive is just maintaining
-    // the index of the currently-active component
+  // Helper method for configuring the current active state. currentActive is just maintaining
+  // the index of the currently-active component
 	function updateCurrentActive( direction , figure ){
-        component = components[currentActive];
+      component = components[currentActive];
 
-        // Call the autoDrag function, which triggers the transition for lifting up
-        // or dragging down the component
-        autoDrag( component , direction);
-        if( direction == 'up'  && currentActive < components.length-1 ){
-            currentActive++;
-            changeDescription();
-        } else if (direction == 'down' ){
-            currentActive--;
-            changeDescription();
-        }
+      // Call the autoDrag function, which triggers the transition for lifting up
+      // or dragging down the component
+      autoDrag( component , direction);
+          if( direction == 'up'  && currentActive < components.length-1 ){
+              currentActive++;
+              changeDescription();
+          } else if (direction == 'down' ){
+              currentActive--;
+              changeDescription();
+          }
 	}
 
     /**
@@ -163,10 +180,9 @@ $(document).ready(function(){
        This method is reversed when you click on the back of the flap to reveal the flap itself.
      */
 	function autoDrag( component , direction , figure ){
-
-		if( direction == 'up' ){
-            component.self.addClass('flipped');
-			component.self.removeClass('active').css('z-index', 1000 );
+      if( direction == 'up' ){
+          component.self.addClass('flipped');
+			    component.self.removeClass('active').css('z-index', 1000 );
 
 			if( component.self.next( '.flip-up-component-wrapper')[0] ){
 				setTimeout(function(){
@@ -175,17 +191,17 @@ $(document).ready(function(){
 					component.self.next('.flip-up-component-wrapper').addClass('active');
 				},500);
 			}
-		} else if ( direction == 'down' ){
-			var prevComponent;
-            prevComponent = components[component.index - 1];
-            $('.active').removeClass('active');
-            $('.previous').removeClass('previous').removeClass('flipped').addClass('active');
+		  } else if ( direction == 'down' ){
+			     var prevComponent;
+           prevComponent = components[component.index - 1];
+           $('.active').removeClass('active');
+           $('.previous').removeClass('previous').removeClass('flipped').addClass('active');
 
-			prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
-			prevComponent.self.css('z-index', '');
-		} else if (direction == 'last' ){
-			component.self.prev('.flip-up-component-wrapper').addClass('previous');
-		}
+			     prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
+			     prevComponent.self.css('z-index', '');
+		 } else if (direction == 'last' ){
+		       component.self.prev('.flip-up-component-wrapper').addClass('previous');
+		 }
 	}
 
     changeDescription();
@@ -218,7 +234,7 @@ $(document).ready(function(){
   // dynamically change text in description based on what CurrentActive is set to
   // new addition
   // dynamically change text in description based on what CurrentActive is set to
-  function changeDescription(){
+  function changeDescription() {
       var selector = components[currentActive].index;
 
       // we have 5 flaps, bottom layer=6 so it gets custom text
