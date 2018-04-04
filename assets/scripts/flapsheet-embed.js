@@ -1,6 +1,7 @@
 // Run the function passed in when the page fully loads. This ensures that all appropriate markup is in place.
 
 $(document).ready(function(){
+
     // Get the wrapper HTML element for the flap anatomy and store it in $wrapper
     var $wrapper = $('.flip-up-wrapper');
 
@@ -61,10 +62,48 @@ $(document).ready(function(){
 		currentActive = 0,
 		components = [];
 
+
+    function autoFlip(clicked, active){
+      if (clicked > active){
+          //flip up
+          for (var i = active; i < clicked; i++) {
+              updateCurrentActive('up');
+          }
+
+      } else if (clicked < active){
+            for (var i = active; i > clicked; i--) {
+                updateCurrentActive('down');
+            }
+      }
+      changeDescription();
+    }
+
     function clickIndicator(id){
         var id = id.slice(2);
         console.log("indicator clicked: " + id);
         // magic happens that switches to the flap with id=id
+
+        if (id == "zero"){
+          autoFlip(0,currentActive);
+        }
+        if (id == "one"){
+          autoFlip(1,currentActive);
+        }
+        if (id == "two"){
+          autoFlip(2,currentActive);
+        }
+        if (id == "three"){
+          autoFlip(3,currentActive);
+        }
+        if (id == "four"){
+          autoFlip(4,currentActive);
+        }
+        if (id == "five"){
+          autoFlip(5,currentActive);
+        }
+        if (id == "six"){
+          autoFlip(6,currentActive);
+        }
     }
 
     // add onclick functions to each indicator
@@ -303,5 +342,4 @@ $(document).ready(function(){
     $(this).find('.component-border').css({'opacity': 0});
     console.log('NO!');
   });*/
-
 });
