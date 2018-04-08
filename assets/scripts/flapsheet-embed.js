@@ -67,12 +67,12 @@ $(document).ready(function(){
       if (clicked > active){
           //flip up
           for (var i = active; i < clicked; i++) {
-              updateCurrentActive('up');
+              updateCurrentActive('up', 0);
           }
 
       } else if (clicked < active){
             for (var i = active; i > clicked; i--) {
-                updateCurrentActive('down');
+                updateCurrentActive('down', 0);
             }
       }
       changeDescription();
@@ -174,12 +174,12 @@ $(document).ready(function(){
 
   // Helper method for configuring the current active state. currentActive is just maintaining
   // the index of the currently-active component
-	function updateCurrentActive( direction , figure ){
+	function updateCurrentActive( direction , timeout ){
       component = components[currentActive];
 
       // Call the autoDrag function, which triggers the transition for lifting up
       // or dragging down the component
-      autoDrag( component , direction);
+      autoDrag( component , direction, timeout);
           if( direction == 'up'  && currentActive < components.length-1 ){
               currentActive++;
               changeDescription();
@@ -218,19 +218,19 @@ $(document).ready(function(){
 
        This method is reversed when you click on the back of the flap to reveal the flap itself.
      */
-	function autoDrag( component , direction , figure ){
+	function autoDrag( component , direction , timeout ){
       if( direction == 'up' ){
           component.self.addClass('flipped');
 			    component.self.removeClass('active').css('z-index', 1000 );
 
-			if( component.self.next( '.flip-up-component-wrapper')[0] ){
-				setTimeout(function(){
+          if( component.self.next( '.flip-up-component-wrapper')[0] ){
+				      setTimeout(function(){
                     $('.previous').removeClass('previous');
-					component.self.addClass('previous');
-					component.self.next('.flip-up-component-wrapper').addClass('active');
-				},500);
-			}
-		  } else if ( direction == 'down' ){
+					          component.self.addClass('previous');
+					          component.self.next('.flip-up-component-wrapper').addClass('active');
+              }, timeout||500);
+         }
+      } else if ( direction == 'down' ){
 			     var prevComponent;
            prevComponent = components[component.index - 1];
            $('.active').removeClass('active');
