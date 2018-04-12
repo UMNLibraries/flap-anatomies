@@ -64,6 +64,8 @@ $(document).ready(function(){
 
 
     function autoFlip(clicked, active){
+      console.log(clicked);
+      console.log(active);
       if (clicked > active){
           //flip up
           for (var i = active; i < clicked; i++) {
@@ -75,7 +77,6 @@ $(document).ready(function(){
                 updateCurrentActive('down', 0);
             }
       }
-      changeDescription();
     }
 
     function clickIndicator(id){
@@ -331,15 +332,4 @@ $(document).ready(function(){
         removeIndicators(6);
       }
   }
-
-  //hover to show border both on front flip-up-component active and the previous
-  //flip-up component
-
-/*  $('.flip-up-component-wrapper .active').hover(function(){
-    $(this).find('.component-border').css({'opacity': 1});
-    console.log('Hi!');
-  }, function(){
-    $(this).find('.component-border').css({'opacity': 0});
-    console.log('NO!');
-  });*/
 });
