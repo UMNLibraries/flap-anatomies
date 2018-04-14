@@ -198,3 +198,12 @@ html,body{
 }
 
 span { cursor: pointer; }
+
+#startup, #return {
+  text-align: center;
+}
+
+button {
+  margin-top: 30px;
+  padding: 15px;
+}

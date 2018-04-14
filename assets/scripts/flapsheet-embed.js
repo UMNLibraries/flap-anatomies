@@ -62,10 +62,10 @@ $(document).ready(function(){
 		currentActive = 0,
 		components = [];
 
-
+    // clicked is the flap you want to navigate to
     function autoFlip(clicked, active){
-      console.log(clicked);
-      console.log(active);
+      console.log("indicator that was clicked: " + clicked);
+      console.log("the active flap is: " + active);
       if (clicked > active){
           //flip up
           for (var i = active; i < clicked; i++) {
@@ -183,10 +183,10 @@ $(document).ready(function(){
       autoDrag( component , direction, timeout);
           if( direction == 'up'  && currentActive < components.length-1 ){
               currentActive++;
-              changeDescription();
+              changeDescription(side);
           } else if (direction == 'down' ){
               currentActive--;
-              changeDescription();
+              changeDescription(side);
           }
 	}
 
@@ -244,8 +244,39 @@ $(document).ready(function(){
 		 }
 	}
 
-    changeDescription();
     $(".flap-info").css({'height': FlapConfiguration.background.height});
+
+    // tracks which spread the user is viewing
+    var side;
+
+    // user will select either the left or right spread
+    $("#left").on( "click", function() {
+        side = "left";
+        changeDescription(side);
+    });
+    $("#right").on( "click", function() {
+        // hide startup elements
+        $("#startup").addClass("hidden section");
+        // show flap information and indicators
+        $("#panel-text").removeClass("hidden section");
+        $("#indicators").removeClass("hidden section");
+        // show the return button
+        $("#return").removeClass("hidden section");
+        // fill in flap information
+        side = "right";
+        changeDescription(side);
+    });
+
+    $("#return-button").on( "click", function() {
+        // reset the side variable to be empty , hide indicators/text/return-button
+        side = "";
+        $("#panel-text").addClass("hidden section");
+        $("#indicators").addClass("hidden section");
+        $("#return").addClass("hidden section");
+        // show the startup information, reset flaps
+        $("#startup").removeClass("hidden section");
+        autoFlip(0,currentActive);
+    });
 
   function removeIndicators(num){
     if (num != 0){
@@ -274,62 +305,66 @@ $(document).ready(function(){
   // dynamically change text in description based on what CurrentActive is set to
   // new addition
   // dynamically change text in description based on what CurrentActive is set to
-  function changeDescription() {
+  function changeDescription(side) {
       var selector = components[currentActive].index;
+      if (side === "left") {
+        console.log("left spread ...");
+      }
+      if (side === "right"){
+        // we have 5 flaps, bottom layer=6 so it gets custom text
+        var customText = "<h1>Last Component</h1>";
+        if (selector != 6){
+          $( "#custom-description" ).html(components[currentActive].self.data('desc'));
+        } else {
+          $( "#custom-description" ).html(customText);
+        }
 
-      // we have 5 flaps, bottom layer=6 so it gets custom text
-      var customText = "<h1>Last Component</h1>";
-      if (selector != 6){
-        $( "#custom-description" ).html(components[currentActive].self.data('desc'));
-      } else {
-        $( "#custom-description" ).html(customText);
-      }
-
-      if (selector == 0){
-        $("#zero").removeClass("hidden");
-        $("#one").addClass("hidden");
-        $("#i_zero").css('color', 'yellow');
-        removeIndicators(0);
-      }
-      if (selector == 1){
-        $("#one").removeClass("hidden");
-        $("#zero").addClass("hidden");
-        $("#two").addClass("hidden");
-        $("#i_one").css('color', 'yellow');
-        removeIndicators(1);
-      }
-      if (selector == 2){
-        $("#two").removeClass("hidden");
-        $("#one").addClass("hidden");
-        $("#three").addClass("hidden");
-        $("#i_two").css('color', 'yellow');
-        removeIndicators(2);
-      }
-      if (selector == 3){
-        $("#three").removeClass("hidden");
-        $("#two").addClass("hidden");
-        $("#four").addClass("hidden");
-        $("#i_three").css('color', 'yellow');
-        removeIndicators(3);
-      }
-      if (selector == 4){
-        $("#four").removeClass("hidden");
-        $("#three").addClass("hidden");
-        $("#five").addClass("hidden");
-        $("#i_four").css('color', 'yellow');
-        removeIndicators(4);
-      }
-      if (selector == 5){
-        $("#five").removeClass("hidden");
-        $("#four").addClass("hidden");
-        $("#six").addClass("hidden");
-        $("#i_five").css('color', 'yellow');
-        removeIndicators(5);
-      }
-      if (selector == 6){
-        $("#five").addClass("hidden");
-        $("#i_six").css('color', 'yellow');
-        removeIndicators(6);
+        if (selector == 0){
+          $("#zero").removeClass("hidden");
+          $("#one").addClass("hidden");
+          $("#i_zero").css('color', 'yellow');
+          removeIndicators(0);
+        }
+        if (selector == 1){
+          $("#one").removeClass("hidden");
+          $("#zero").addClass("hidden");
+          $("#two").addClass("hidden");
+          $("#i_one").css('color', 'yellow');
+          removeIndicators(1);
+        }
+        if (selector == 2){
+          $("#two").removeClass("hidden");
+          $("#one").addClass("hidden");
+          $("#three").addClass("hidden");
+          $("#i_two").css('color', 'yellow');
+          removeIndicators(2);
+        }
+        if (selector == 3){
+          $("#three").removeClass("hidden");
+          $("#two").addClass("hidden");
+          $("#four").addClass("hidden");
+          $("#i_three").css('color', 'yellow');
+          removeIndicators(3);
+        }
+        if (selector == 4){
+          $("#four").removeClass("hidden");
+          $("#three").addClass("hidden");
+          $("#five").addClass("hidden");
+          $("#i_four").css('color', 'yellow');
+          removeIndicators(4);
+        }
+        if (selector == 5){
+          $("#five").removeClass("hidden");
+          $("#four").addClass("hidden");
+          $("#six").addClass("hidden");
+          $("#i_five").css('color', 'yellow');
+          removeIndicators(5);
+        }
+        if (selector == 6){
+          $("#five").addClass("hidden");
+          $("#i_six").css('color', 'yellow');
+          removeIndicators(6);
+        }
       }
   }
 });
