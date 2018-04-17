@@ -62,17 +62,20 @@ $(document).ready(function(){
 		currentActive = 0,
 		components = [];
 
-    // clicked is the flap you want to navigate to
-    function autoFlip(clicked, active){
-      console.log("indicator that was clicked: " + clicked);
-      console.log("the active flap is: " + active);
+    // tracks which spread the user is viewing
+    var side;
+    // use retButton to verify where the autoFlip call is coming from
+    var retButton = false;
+
+    // clicked is the flap you want to navigate to, active is the current flap
+    function autoFlip(clicked, active) {
       if (clicked > active){
           //flip up
           for (var i = active; i < clicked; i++) {
               updateCurrentActive('up', 0);
           }
 
-      } else if (clicked < active){
+      } else if (clicked < active) {
             for (var i = active; i > clicked; i--) {
                 updateCurrentActive('down', 0);
             }
@@ -178,6 +181,22 @@ $(document).ready(function(){
 	function updateCurrentActive( direction , timeout ){
       component = components[currentActive];
 
+      // check if the indicators are hidden, if they are this means the
+      // user has clicked a flap instead of clicking the button to decide the spread
+      // if retButton is true we do not want to to execute this code because it has already been done
+      // ** figure out how to determine which spread they clicked on ** (right now assuming right)
+      if (($("#indicators").hasClass('hidden section') == true) && retButton == false){
+          // a button was not clicked, hide buttons and show indicators and description text
+          $("#startup").addClass("hidden section");
+          // show flap information and indicators
+          $("#panel-text").removeClass("hidden section");
+          $("#indicators").removeClass("hidden section");
+          // show the return button
+          $("#return").removeClass("hidden section");
+          // fill in flap information
+          side = "right";
+          changeDescription(side);
+      }
       // Call the autoDrag function, which triggers the transition for lifting up
       // or dragging down the component
       autoDrag( component , direction, timeout);
@@ -246,9 +265,6 @@ $(document).ready(function(){
 
     $(".flap-info").css({'height': FlapConfiguration.background.height});
 
-    // tracks which spread the user is viewing
-    var side;
-
     // user will select either the left or right spread
     $("#left").on( "click", function() {
         side = "left";
@@ -270,12 +286,14 @@ $(document).ready(function(){
     $("#return-button").on( "click", function() {
         // reset the side variable to be empty , hide indicators/text/return-button
         side = "";
+        retButton = true;
         $("#panel-text").addClass("hidden section");
         $("#indicators").addClass("hidden section");
         $("#return").addClass("hidden section");
         // show the startup information, reset flaps
         $("#startup").removeClass("hidden section");
         autoFlip(0,currentActive);
+        retButton = false;
     });
 
   function removeIndicators(num){
@@ -302,13 +320,12 @@ $(document).ready(function(){
     }
   }
 
-  // dynamically change text in description based on what CurrentActive is set to
-  // new addition
-  // dynamically change text in description based on what CurrentActive is set to
+  // dynamically change text in description
+  // depends completely on which spread is being viewedss
   function changeDescription(side) {
       var selector = components[currentActive].index;
       if (side === "left") {
-        console.log("left spread ...");
+        console.log("viewing the left spread ...");
       }
       if (side === "right"){
         // we have 5 flaps, bottom layer=6 so it gets custom text
