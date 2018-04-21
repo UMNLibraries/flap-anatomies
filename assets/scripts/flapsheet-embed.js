@@ -202,7 +202,7 @@ $(document).ready(function(){
       // find out which side was flipped
       if (($(".flipped").hasClass("right")) == true){side = "right";}
       if (($(".flipped").hasClass("left")) == true){side = "left";}
-  
+
           if( direction == 'up'  && currentActive < components.length-1 ){
               currentActive++;
               changeDescription(side);
