@@ -242,7 +242,25 @@ $(document).ready(function(){
        This method is reversed when you click on the back of the flap to reveal the flap itself.
      */
 	function autoDrag( component , direction , timeout ){
-      if( direction == 'up' ){
+      if ((timeout == 0) && (direction=="up")) {
+        component.self.addClass('flipped');
+        component.self.removeClass('active');
+        if( component.self.next( '.flip-up-component-wrapper')[0] ){
+                  $('.previous').removeClass('previous');
+                  component.self.addClass('previous');
+                  component.self.next('.flip-up-component-wrapper').addClass('active');
+       }
+      }
+      if ((timeout == 0) && (direction=="down")) {
+        var prevComponent;
+        prevComponent = components[component.index - 1];
+        $('.active').removeClass('active');
+        $('.previous').removeClass('previous').removeClass('flipped').addClass('active');
+
+        prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
+        prevComponent.self.css('z-index', '');
+      }
+      if( (timeout != 0) && (direction == 'up') ){
           component.self.addClass('flipped');
 			    component.self.removeClass('active').css('z-index', 1000 );
 
@@ -253,7 +271,7 @@ $(document).ready(function(){
 					          component.self.next('.flip-up-component-wrapper').addClass('active');
               }, timeout||500);
          }
-      } else if ( direction == 'down' ){
+      } else if ( (timeout != 0) && (direction == 'down') ){
 			     var prevComponent;
            prevComponent = components[component.index - 1];
            $('.active').removeClass('active');
