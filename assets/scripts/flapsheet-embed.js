@@ -244,7 +244,7 @@ $(document).ready(function(){
 	function autoDrag( component , direction , timeout ){
       if ((timeout == 0) && (direction=="up")) {
         component.self.addClass('flipped');
-        component.self.removeClass('active');
+        component.self.removeClass('active').css('z-index', 1000 );
         if( component.self.next( '.flip-up-component-wrapper')[0] ){
                   $('.previous').removeClass('previous');
                   component.self.addClass('previous');
