@@ -14,18 +14,24 @@ $(document).ready(function(){
         'perspective:': FlapConfiguration.background.width
     });
 
+
     var flipDir = FlapConfiguration['flip-dir'];
     var baseUrl = FlapConfiguration['base-url'];
+
+    var flipDir2 = FlapConfiguration2['flip-dir'];
+    var baseUrl2 = FlapConfiguration2['base-url'];
 
     $wrapper.addClass('flip-dir-' + flipDir);
 
     // Clear out any HTML currently in the target .flip-up element. This ensures we start
     // with a clean slate.
-    $wrapper.find('.flip-up').empty();
+    $wrapper.find('#firstDiagram').empty();
+    $wrapper.find('#secondDiagram').empty().addClass('flip-dir-' + flipDir2);
 
     // Mustache is a template system that allows you to specify dynamic markup within HTML.
     // You can find the template referred to here by searching in FlapAnatomy.htm for component-markup
     var componentTemplate = $('#component-markup').html();
+    var componentTemplate2 = $('#component-markup2').html();
 
     var idx=1;
     // Loop over each component within our configuration file
@@ -48,19 +54,53 @@ $(document).ready(function(){
         .data('desc', component.desc);
 
         // Append the generated markup to the .flip-up div
-        $wrapper.find('.flip-up').append($markup);
+        $wrapper.find('#firstDiagram').append($markup);
+
+        idx++;
+    };
+    // The last component is just an empty Mustache template that doesn't have any images.
+    $lastComponent = Mustache.render(componentTemplate, {'idx': idx});
+
+    $wrapper.find('#firstDiagram').append($lastComponent);
+
+
+    // re run loop for second set of flaps
+    var idx=1;
+    // Loop over each component within our configuration file
+    for(var flap in FlapConfiguration2.components) {
+        var component = FlapConfiguration2.components[flap];
+        // Create the HTML markup for this component.
+        var $markup = $(Mustache.render(componentTemplate2, {'baseUrl': baseUrl2, 'idx': idx, 'component': component}));
+
+        // Apply custom CSS specific to this component. It's necessary to ensure proper positioning
+        // and scaling of the components.
+        $markup.css({
+            top: component.y + '%',
+            left: component.x + '%',
+            height: component.h + '%',
+            maxHeight: component.h + '%',
+            width: component.w + '%'
+        })
+        // Configure the first flap as the 'active' flap. That is, the one that will receive clicks
+        .toggleClass('active', idx==1)
+        .data('desc', component.desc);
+
+        // Append the generated markup to the .flip-up div
+        $wrapper.find('#secondDiagram').append($markup);
 
         idx++;
     };
 
     // The last component is just an empty Mustache template that doesn't have any images.
-    $lastComponent = Mustache.render(componentTemplate, {'idx': idx});
+    $lastComponent2 = Mustache.render(componentTemplate2, {'idx': idx});
 
-    $wrapper.find('.flip-up').append($lastComponent);
+    $wrapper.find('#secondDiagram').append($lastComponent2);
 
 	  var index = 0,
 		currentActive = 0,
 		components = [];
+    components2 = [];
+    var first = true;
 
     // tracks which spread the user is viewing
     var side;
@@ -164,23 +204,48 @@ $(document).ready(function(){
           updateCurrentActive('down', figure);
       }
       });
-      index++;
+      if (first == true && index <= 6){
+        index++;
+      }
+      if (index == 7 && first == true) {
+        first = false;
+        index = 0;
+      }
+      else if (first == false){
+        index++;
+      }
 	}
 
 	var i = 1;
   // Initialize the component list, creating the pseudo-class described above for
   // each component found
-	while( $('.component-' + i).length){
+	while( $('#firstDiagram .component-' + i).length){
 	     var component = new Component( 'component-' + i );
        components.push(component);
 		   i++;
 	}
 
+  var j = 1;
+  // Initialize the component list, creating the pseudo-class described above for
+  // each component found
+	while( $('#secondDiagram .component-' + j).length){
+	     var component = new Component( 'component-' + j );
+       components2.push(component);
+		   j++;
+	}
+
+  console.log(components);
+  console.log(components2);
+
   // Helper method for configuring the current active state. currentActive is just maintaining
   // the index of the currently-active component
 	function updateCurrentActive( direction , timeout ){
+    var component;
+    if (side == "left"){
+        component = components2[currentActive];
+    } else {
       component = components[currentActive];
-
+    }
       // check if the indicators are hidden, if they are this means the
       // user has clicked a flap instead of clicking the button to decide the spread
       // if retButton is true we do not want to to execute this code because it has already been done

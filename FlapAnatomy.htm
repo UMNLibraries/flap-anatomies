@@ -7,9 +7,25 @@
 <link href="assets/css/reset.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/flapsheet-embed.css">
 <script src="assets/scripts/mustache.min.js"></script>
-<script src="Components/latest/flap-configuration.js"></script>
+<script src="Components/diagram1/flap-configuration.js"></script>
+<script src="Components/diagram2/flap-configuration2.js"></script>
 <script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
+        {{#component}}
+        <div class="flipper">
+            <div class="front flip-up-component">
+                <img src="{{baseUrl}}/{{component.src}}" class="component-img" />
+                <img src="{{baseUrl}}/{{component.border_src}}" class="component-border" />
+            </div>
+            <div class="back flip-up-back">
+                <img src="{{baseUrl}}/{{component.shadow_src}}"/>
+            </div>
+        </div>
+        {{/component}}
+    </div>
+</script>
+<script type="x-tmpl-mustache" id="component-markup2">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} left" id="component-{{idx}}">
         {{#component}}
         <div class="flipper">
             <div class="front flip-up-component">
@@ -32,7 +48,8 @@
 </head>
 <body>
     <div class="flip-up-wrapper">
-        <div class="flip-up"></div>
+        <div class="flip-up" id="firstDiagram"></div>
+        <div class="flip-up" id="secondDiagram"></div>
     </div>
     <div class="flap-info">
         <div class="hidden section" id="indicators">
