@@ -205,5 +205,10 @@ span { cursor: pointer; }
 
 button {
   margin-top: 30px;
-  padding: 15px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#startup p {
+  font-size: 20px;
 }
