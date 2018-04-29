@@ -14,24 +14,18 @@ $(document).ready(function(){
         'perspective:': FlapConfiguration.background.width
     });
 
-
     var flipDir = FlapConfiguration['flip-dir'];
     var baseUrl = FlapConfiguration['base-url'];
-
-    var flipDir2 = FlapConfiguration2['flip-dir'];
-    var baseUrl2 = FlapConfiguration2['base-url'];
 
     $wrapper.addClass('flip-dir-' + flipDir);
 
     // Clear out any HTML currently in the target .flip-up element. This ensures we start
     // with a clean slate.
-    $wrapper.find('#firstDiagram').empty();
-    $wrapper.find('#secondDiagram').empty().addClass('flip-dir-' + flipDir2);
+    $wrapper.find('.flip-up').empty();
 
     // Mustache is a template system that allows you to specify dynamic markup within HTML.
     // You can find the template referred to here by searching in FlapAnatomy.htm for component-markup
     var componentTemplate = $('#component-markup').html();
-    var componentTemplate2 = $('#component-markup2').html();
 
     var idx=1;
     // Loop over each component within our configuration file
@@ -54,56 +48,20 @@ $(document).ready(function(){
         .data('desc', component.desc);
 
         // Append the generated markup to the .flip-up div
-        $wrapper.find('#firstDiagram').append($markup);
+        $wrapper.find('.flip-up').append($markup);
 
         idx++;
     };
+
     // The last component is just an empty Mustache template that doesn't have any images.
     $lastComponent = Mustache.render(componentTemplate, {'idx': idx});
+    $wrapper.find('.flip-up').append($lastComponent);
 
-    $wrapper.find('#firstDiagram').append($lastComponent);
-
-
-    // re run loop for second set of flaps
-    var idx=1;
-    // Loop over each component within our configuration file
-    for(var flap in FlapConfiguration2.components) {
-        var component = FlapConfiguration2.components[flap];
-        // Create the HTML markup for this component.
-        var $markup = $(Mustache.render(componentTemplate2, {'baseUrl': baseUrl2, 'idx': idx, 'component': component}));
-
-        // Apply custom CSS specific to this component. It's necessary to ensure proper positioning
-        // and scaling of the components.
-        $markup.css({
-            top: component.y + '%',
-            left: component.x + '%',
-            height: component.h + '%',
-            maxHeight: component.h + '%',
-            width: component.w + '%'
-        })
-        // Configure the first flap as the 'active' flap. That is, the one that will receive clicks
-        .toggleClass('active', idx==1)
-        .data('desc', component.desc);
-
-        // Append the generated markup to the .flip-up div
-        $wrapper.find('#secondDiagram').append($markup);
-
-        idx++;
-    };
-
-    // The last component is just an empty Mustache template that doesn't have any images.
-    $lastComponent2 = Mustache.render(componentTemplate2, {'idx': idx});
-
-    $wrapper.find('#secondDiagram').append($lastComponent2);
 
 	  var index = 0,
 		currentActive = 0,
 		components = [];
-    components2 = [];
-    var first = true;
 
-    // tracks which spread the user is viewing
-    var side;
     // use retButton to verify where the autoFlip call is coming from
     var retButton = false;
 
@@ -122,10 +80,10 @@ $(document).ready(function(){
       }
     }
 
+    // depending on id, call autoFlip with different parameter
     function clickIndicator(id){
         var id = id.slice(2);
         console.log("indicator clicked: " + id);
-        // magic happens that switches to the flap with id=id
 
         if (id == "zero"){
           autoFlip(0,currentActive);
@@ -174,7 +132,6 @@ $(document).ready(function(){
     });
 
 
-
     // Create a new pseudo-class to represent a component. This will allow for better handling
     // of click events in a structured way.
     var Component = function( elem , figure ){
@@ -204,54 +161,28 @@ $(document).ready(function(){
           updateCurrentActive('down', figure);
       }
       });
-      if (first == true && index <= 6){
-        index++;
-      }
-      if (index == 7 && first == true) {
-        first = false;
-        index = 0;
-      }
-      else if (first == false){
-        index++;
-      }
+      index++;
 	}
 
 	var i = 1;
   // Initialize the component list, creating the pseudo-class described above for
   // each component found
-	while( $('#firstDiagram .component-' + i).length){
+	while( $('.component-' + i).length){
 	     var component = new Component( 'component-' + i );
        components.push(component);
 		   i++;
 	}
 
-  var j = 1;
-  // Initialize the component list, creating the pseudo-class described above for
-  // each component found
-	while( $('#secondDiagram .component-' + j).length){
-	     var component = new Component( 'component-' + j );
-       components2.push(component);
-		   j++;
-	}
-
-  console.log(components);
-  console.log(components2);
-
   // Helper method for configuring the current active state. currentActive is just maintaining
   // the index of the currently-active component
 	function updateCurrentActive( direction , timeout ){
-    var component;
-    if (side == "left"){
-        component = components2[currentActive];
-    } else {
       component = components[currentActive];
-    }
+
       // check if the indicators are hidden, if they are this means the
-      // user has clicked a flap instead of clicking the button to decide the spread
+      // user has clicked a flap instead of clicking the start button
       // if retButton is true we do not want to to execute this code because it has already been done
-      // ** figure out how to determine which spread they clicked on ** (right now assuming right)
       if (($("#indicators").hasClass('hidden section') == true) && retButton == false){
-          // a button was not clicked, hide buttons and show indicators and description text
+          // hide startup screen
           $("#startup").addClass("hidden section");
           // show flap information and indicators
           $("#panel-text").removeClass("hidden section");
@@ -264,16 +195,12 @@ $(document).ready(function(){
       autoDrag( component , direction, timeout);
 
 
-      // find out which side was flipped
-      if (($(".flipped").hasClass("right")) == true){side = "right";}
-      if (($(".flipped").hasClass("left")) == true){side = "left";}
-
           if( direction == 'up'  && currentActive < components.length-1 ){
               currentActive++;
-              changeDescription(side);
+              changeDescription();
           } else if (direction == 'down' ){
               currentActive--;
-              changeDescription(side);
+              changeDescription();
           }
 	}
 
@@ -307,6 +234,8 @@ $(document).ready(function(){
        This method is reversed when you click on the back of the flap to reveal the flap itself.
      */
 	function autoDrag( component , direction , timeout ){
+      // if timeout is 0 then this function is getting called from autoFlip
+      // in this case we will not use any timeouts
       if ((timeout == 0) && (direction=="up")) {
         component.self.addClass('flipped');
         component.self.removeClass('active').css('z-index', 1000 );
@@ -351,12 +280,8 @@ $(document).ready(function(){
 
     $(".flap-info").css({'height': FlapConfiguration.background.height});
 
-    // user will select either the left or right spread
-    $("#left").on( "click", function() {
-        side = "left";
-        changeDescription(side);
-    });
-    $("#right").on( "click", function() {
+    // when the start button is clicked execute this code
+    $("#start").on( "click", function() {
         // hide startup elements
         $("#startup").addClass("hidden section");
         // show flap information and indicators
@@ -365,13 +290,12 @@ $(document).ready(function(){
         // show the return button
         $("#return").removeClass("hidden section");
         // fill in flap information
-        side = "right";
-        changeDescription(side);
+        changeDescription();
     });
 
+    // when the return button is clicked execute this code
     $("#return-button").on( "click", function() {
-        // reset the side variable to be empty , hide indicators/text/return-button
-        side = "";
+        // hide indicators/panel-text/return-button
         retButton = true;
         $("#panel-text").addClass("hidden section");
         $("#indicators").addClass("hidden section");
@@ -406,14 +330,9 @@ $(document).ready(function(){
     }
   }
 
-  // dynamically change text in description
-  // depends completely on which spread is being viewedss
-  function changeDescription(side) {
+  // dynamically change text in description, depends completely on which spread is being viewed
+  function changeDescription() {
       var selector = components[currentActive].index;
-      if (side === "left") {
-        console.log("viewing the left spread ...");
-      }
-      if (side === "right"){
         // we have 5 flaps, bottom layer=6 so it gets custom text
         var customText = "<h1>Last Component</h1>";
         if (selector != 6){
@@ -468,6 +387,5 @@ $(document).ready(function(){
           $("#i_six").css('color', 'yellow');
           removeIndicators(6);
         }
-      }
   }
 });
