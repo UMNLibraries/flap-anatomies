@@ -27,6 +27,15 @@
 <!-- feature detection for HTML5/CSS3 -->
 <script src="assets/scripts/flapsheet-embed.js"></script>
 
+<script>
+    function changePage() {
+      console.log("here");
+      var sel = document.getElementById('dropdown');
+      var location = sel.selectedOptions[0].value;
+      window.location.href = location;
+    }
+</script>
+
 
 </head>
 <body>
@@ -76,6 +85,19 @@
       <div id="startup">
           <p> flap anatomy startup screen </p>
           <button type="button" id="start"> start </button>
+          <div style="padding-top: 10px;">
+            <form>
+              <label> Select Diagram to View: </label>
+                <select onchange="changePage()" id="dropdown">
+                  <option selected value="./FlapAnatomy.htm">Diagram 1</option>
+                  <option value="../diagram2/FlapAnatomy.htm">Diagram 2</option>
+                </select>
+            <form>
+        </div>
+        <hr>
+        <div>
+          <p> project description / logo </p>
+        </div>
       </div>
     </div>
 </body>
