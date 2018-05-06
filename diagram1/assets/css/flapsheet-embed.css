@@ -164,8 +164,6 @@ html,body{
     z-index:120
 }
 
-
-
 .flap-info {
     overflow: hidden;
     top: 0;
@@ -174,11 +172,6 @@ html,body{
     background-color: black;
     color: white;
     z-index: 10000;
-}
-
-.section {
-    font-size: 1.1em;
-    line-height: 1.7em;
 }
 
 #custom-description {
@@ -203,12 +196,6 @@ span { cursor: pointer; }
   text-align: center;
 }
 
-button {
-  margin-top: 30px;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-#startup p {
-  font-size: 20px;
-}
+.is-scrollable {
+      overflow-y: scroll;
+    }
