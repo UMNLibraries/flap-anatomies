@@ -168,18 +168,16 @@ html,body{
     overflow: hidden;
     top: 0;
     right: 0;
-    padding: 30px;
+    padding: 20px;
     background-color: black;
     color: white;
     z-index: 10000;
 }
 
 #custom-description {
-    font-size: 2.3em;
-    font-weight: bold;
-    margin-top: 30%;
+    color: white;
+    margin-top: 10%;
     margin-bottom: 10%;
-    font-family: sans-serif;
 }
 
 .hidden {
@@ -192,10 +190,28 @@ html,body{
 
 span { cursor: pointer; }
 
-#startup, #return {
+#startup{
   text-align: center;
 }
 
 .is-scrollable {
-      overflow-y: scroll;
-    }
+    overflow-y: scroll;
+    text-align: left;
+    padding: 5px;
+    line-height: 1.2em;
+}
+
+.title {
+    text-align: left;
+}
+
+#return {
+    margin-top: 10%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
