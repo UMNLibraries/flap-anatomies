@@ -57,6 +57,8 @@ $(document).ready(function(){
     $lastComponent = Mustache.render(componentTemplate, {'idx': idx});
     $wrapper.find('.flip-up').append($lastComponent);
 
+    // change any neccessary flip directions, in this diagram change the 9th flap to down
+    $("#component-9").addClass("flip-dir-down");
 
 	  var index = 0,
 		currentActive = 0,
