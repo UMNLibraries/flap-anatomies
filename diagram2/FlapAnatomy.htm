@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="assets/scripts/jquery.min.js"></script>
+<link href="assets/css/reset.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+<link rel="stylesheet" href="assets/css/flapsheet-embed.css">
+<script src="assets/scripts/mustache.min.js"></script>
+<script src="Components/diagram2/flap-configuration2.js"></script>
+<script type="x-tmpl-mustache" id="component-markup">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}}" id="component-{{idx}}">
+        {{#component}}
+        <div class="flipper">
+            <div class="front flip-up-component">
+                <img src="{{baseUrl}}/{{component.src}}" class="component-img" />
+                <img src="{{baseUrl}}/{{component.border_src}}" class="component-border" />
+            </div>
+            <div class="back flip-up-back">
+                <img src="{{baseUrl}}/{{component.shadow_src}}"/>
+            </div>
+        </div>
+        {{/component}}
+    </div>
+</script>
+
+<!-- feature detection for HTML5/CSS3 -->
+<script src="assets/scripts/flapsheet-embed.js"></script>
+
+<script>
+    function changePage() {
+      console.log("here");
+      var sel = document.getElementById('dropdown');
+      var location = sel.selectedOptions[0].value;
+      window.location.href = location;
+      sel.selectedIndex = 1;
+    }
+</script>
+
+
+</head>
+<body>
+    <div class="flip-up-wrapper">
+        <div class="flip-up"></div>
+    </div>
+    <div class="flap-info">
+        <div class="hidden section" id="indicators">
+            <span id="i_zero">&#11044;</span>
+            <span id="i_one">&#11044;</span>
+            <span id="i_two">&#11044;</span>
+            <span id="i_three">&#11044;</span>
+            <span id="i_four">&#11044;</span>
+            <span id="i_five">&#11044;</span>
+            <span id="i_six">&#11044;</span>
+            <span id="i_seven">&#11044;</span>
+            <span id="i_eight">&#11044;</span>
+            <span id="i_nine">&#11044;</span>
+        </div>
+        <div class="hidden section" id="panel-text">
+            <div id="custom-description" class="title is-4"> </div>
+            <div class="hidden" id="zero">
+                Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+            </div>
+            <div class="hidden" id="one">
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+            </div>
+            <div class="hidden" id="two">
+              facilisis luctus, metus
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+              facilisis luctus, metus
+            </div>
+            <div class="hidden" id="three">
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+              facilisis luctus, metus
+            </div>
+            <div class="hidden" id="four">
+              facilisis luctus, metus
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+            </div>
+            <div class="hidden" id="five">
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+            </div>
+            <div class="hidden" id="six">
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+            </div>
+            <div class="hidden" id="seven">
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+            </div>
+            <div class="hidden" id="eight">
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+            </div>
+            <div class="hidden section" id="return">
+          		<button class="button is-small is-black is-inverted is-outlined" type="button" id="return-button">< go back</button>
+      		</div>
+	      	<hr>
+	          <figure class="image is-128x128" style="margin: auto;">
+	            <img src="./assets/logo.png">
+	          </figure>
+	     </div>
+
+      <div id="startup">
+          <h1 class="title is-4" style="color: white;"><span class=" is-size-6 has-text-weight-normal">Early Interactive Books:</span>
+          <br>Japanese Anatomical Flap Book</h1>
+          <div class="is-scrollable has-text-weight-light" style="height: 400px; border-color: #808080; border-width: 1px; border-style: solid; border-radius: 5px;">
+          <p>
+            Flap anatomies were important, interactive diagrams used for teaching human and animal anatomy in the early modern period.
+            These paper technologies allowed medical students, surgeons, and other interested people to visualize the layers of skin, muscle,
+            organs, and bones that compose the fabric of the body.
+          </p>
+          <br>
+          <p>
+             Flap anatomies created in Western Europe by people like Johannes Remmelin (Catoptrum Microcosmicum, 1619) were regularly printed in books,
+             pamphlets, and individual sheets. While they are uncommon in rare book libraries today because they are so fragile,
+             they have been explored by historians.
+          </p>
+          <br>
+          <p>
+            East Asian examples, on the other hand, are all but unknown.
+            This manuscript is anonymous, and we have not seen other examples of Japanese flap anatomies.
+            This volume, thus, presents somewhat of a mystery: Who made it? Why? Were they inspired by European
+            examples brought to Japan by the Dutch? Who used it?
+          </p>
+          <br>
+          <p>
+            This mid-Edo (late-18th or early 19th century) flap anatomy is unique for several reasons:
+            It was handmade, from the outlines and coloring to cutting and assembling, rather than printed
+            There are a large number of flap sets - sixteen total - some of which are full bodies, others are individual organs
+            The two final pages focus on reproductive, and one is essentially a timeline of fetal development.
+
+            The Wangensteen Historical Library of Biology and Medicine at the University of Medicine is excited to introduce this interactive, animated version of this early Japanese flap anatomy. This digital copy allows unlimited exploration of what is, in person, a fragile item.
+          </p>
+          </div>
+          <br>
+          <button class="button is-medium" type="button" id="start"> start </button>
+          <hr>
+          <h1 class="title is-5" style="color: white;"> Select a Diagram: </h1>
+          <div class="select is-medium">
+              <select onchange="changePage()" id="dropdown">
+                <option value="../diagram1/FlapAnatomy.htm">Diagram 1</option>
+                <option selected value="./FlapAnatomy.htm">Diagram 2</option>
+              </select>
+          </div>
+          <hr>
+          <figure class="image is-128x128" style="margin: auto;">
+            <img src="./assets/logo.png">
+          </figure>
+    </div>
+  </div>
+</body>
+</html>

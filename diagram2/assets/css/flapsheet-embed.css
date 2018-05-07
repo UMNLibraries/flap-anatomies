@@ -1,0 +1,217 @@
+html,body{
+    width:100%;
+    height:100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.flip-up-wrapper{
+    background-size:contain;
+    background-repeat:no-repeat;
+    position:relative;
+    float: left;
+}
+
+.flip-up-component-wrapper{
+    position:absolute;
+    pointer-events:all
+}
+.flip-up-component-wrapper.active{
+    z-index:1000;
+    cursor:pointer !important
+}
+.flip-up-component-wrapper.previous{
+    cursor:pointer !important
+}
+
+.component-border{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity: 0;
+}
+
+/*.flip-up-wrapper:hover .active .component-border {
+    opacity: 1;
+}*/
+
+.flip-up:hover .active .component-border {
+    opacity: 1;
+}
+
+/* entire container, keeps perspective */
+.flip-up-component-wrapper {
+	perspective: 1000px;
+}
+    /* flip the pane when hovered */
+    .flip-dir-left .flipped .flipper {
+        transform: rotateY(-180deg);
+    }
+	.flip-dir-right .flipped .flipper {
+		transform: rotateY(180deg);
+    }
+
+    .flip-dir-up .flipped .flipper {
+        transform: rotateX(180deg);
+    }
+
+    .flip-dir-down .flipped .flipper {
+        transform: rotateX(-180deg);
+    }
+
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+    transform-style: preserve-3d;
+	position: relative;
+}
+    .flip-dir-up .flipper {
+        transform-origin: center top;
+    }
+
+    .flip-dir-down .flipper {
+        transform-origin: center bottom;
+    }
+
+    .flip-dir-left .flipper {
+        transform-origin: left center;
+    }
+
+    .flip-dir-right .flipper {
+        transform-origin: right center;
+    }
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.flip-dir-left .back,
+.flip-dir-right .back {
+    transform: rotateY(180deg);
+}
+
+.flip-dir-up .back,
+.flip-dir-down .back {
+    transform: rotateX(180deg);
+}
+
+
+.component-1 {
+    z-index:7
+}
+.component-1 .flip-up-component {
+    z-index:60
+}
+.component-1 .flip-up-back {
+    z-index:70
+}
+.component-1 .flip-up-shadow {
+    z-index:65
+}
+.component-2 {
+    z-index:6
+}
+.component-2 .flip-up-component {
+    z-index:50
+}
+.component-2 .flip-up-back {
+    z-index:80
+}
+.component-3 {
+    z-index:5
+}
+.component-3 .flip-up-component {
+    z-index:40
+}
+.component-3 .flip-up-back {
+    z-index:90
+}
+.component-4 {
+    z-index:4
+}
+.component-4 .flip-up-component {
+    z-index:30
+}
+.component-4 .flip-up-back {
+    z-index:100
+}
+.component-5 {
+    z-index:3
+}
+.component-5 .flip-up-component {
+    z-index:20
+}
+.component-5 .flip-up-back {
+    z-index:110
+}
+.component-6 {
+    z-index:2
+}
+
+.component-6 .flip-up-back {
+    z-index:120
+}
+
+.flap-info {
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    z-index: 10000;
+}
+
+#custom-description {
+    color: white;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.hidden {
+    display: none;
+}
+
+#indicators {
+    text-align: center;
+}
+
+span { cursor: pointer; }
+
+#startup{
+  text-align: center;
+}
+
+.is-scrollable {
+    overflow-y: scroll;
+    text-align: left;
+    padding: 5px;
+    line-height: 1.2em;
+}
+
+.title {
+    text-align: left;
+}
+
+#return {
+    margin-top: 10%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
