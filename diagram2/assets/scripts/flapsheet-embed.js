@@ -58,7 +58,7 @@ $(document).ready(function(){
     $wrapper.find('.flip-up').append($lastComponent);
 
     // change any neccessary flip directions, in this diagram change the 9th flap to down
-    $("#component-9").addClass("flip-dir-down");
+    $("#component-8").addClass("flip-dir-down");
 
 	  var index = 0,
 		currentActive = 0,
@@ -117,6 +117,9 @@ $(document).ready(function(){
         if (id == "nine"){
           autoFlip(9,currentActive);
         }
+        if (id == "ten"){
+          autoFlip(10,currentActive);
+        }
     }
 
     // add onclick functions to each indicator
@@ -150,7 +153,9 @@ $(document).ready(function(){
     $("#i_nine").on( "click", function() {
         clickIndicator(this.id);
     });
-
+    $("#i_ten").on( "click", function() {
+        clickIndicator(this.id);
+    });
 
     // Create a new pseudo-class to represent a component. This will allow for better handling
     // of click events in a structured way.
@@ -357,6 +362,9 @@ $(document).ready(function(){
     if (num != 9){
       $("#i_nine").css('color', '');
     }
+    if (num != 10){
+      $("#i_ten").css('color', '');
+    }
   }
 
   // dynamically change text in description, depends completely on which spread is being viewed
@@ -364,7 +372,7 @@ $(document).ready(function(){
       var selector = components[currentActive].index;
         // we have 5 flaps, bottom layer=6 so it gets custom text
         var customText = "<h1>Last Component</h1>";
-        if (selector != 9){
+        if (selector != 10){
           $( "#custom-description" ).html(components[currentActive].self.data('desc'));
         } else {
           $( "#custom-description" ).html(customText);
@@ -437,6 +445,12 @@ $(document).ready(function(){
           $("#eight").addClass("hidden");
           $("#i_nine").css('color', 'yellow');
           removeIndicators(9);
+        }
+        if (selector == 10){
+          $("#eight").removeClass("hidden");
+          $("#nine").addClass("hidden");
+          $("#i_ten").css('color', 'yellow');
+          removeIndicators(10);
         }
   }
 });
