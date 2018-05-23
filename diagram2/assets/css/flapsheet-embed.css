@@ -51,18 +51,22 @@ html,body{
 	perspective: 1000px;
 }
     /* flip the pane when hovered */
-    .flip-dir-left .flipped .flipper {
+    .flip-dir-left .flipped .flipper,
+    .flipped .flip-dir-left.flipper {
         transform: rotateY(-180deg);
     }
-	.flip-dir-right .flipped .flipper {
+    .flip-dir-right .flipped .flipper,
+    .flipped .flip-dir-right.flipper {
 		transform: rotateY(180deg);
     }
 
-    .flip-dir-up .flipped .flipper {
+    .flip-dir-up .flipped .flipper,
+    .flipped .flip-dir-up.flipper {
         transform: rotateX(180deg);
     }
 
-    .flip-dir-down .flipped .flipper {
+    .flip-dir-down .flipped .flipper,
+    .flipped .flip-dir-down.flipper {
         transform: rotateX(-180deg);
     }
 
@@ -73,19 +77,23 @@ html,body{
     transform-style: preserve-3d;
 	position: relative;
 }
-    .flip-dir-up .flipper {
+    .flip-dir-up .flipper,
+    .flip-dir-up.flipper {
         transform-origin: center top;
     }
 
-    .flip-dir-down .flipper {
+    .flip-dir-down .flipper,
+    .flip-dir-down.flipper {
         transform-origin: center bottom;
     }
 
-    .flip-dir-left .flipper {
+    .flip-dir-left .flipper,
+    .flip-dir-left.flipper {
         transform-origin: left center;
     }
 
-    .flip-dir-right .flipper {
+    .flip-dir-right .flipper,
+    .flip-dir-right.flipper {
         transform-origin: right center;
     }
 

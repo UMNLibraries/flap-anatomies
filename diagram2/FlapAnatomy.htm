@@ -12,7 +12,7 @@
 <script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}}" id="component-{{idx}}">
         {{#component}}
-        <div class="flipper">
+        <div class="flipper{{#component.flip_dir}} flip-dir-{{component.flip_dir}}{{/component.flip_dir}}">
             <div class="front flip-up-component">
                 <img src="{{baseUrl}}/{{component.src}}" class="component-img" />
                 <img src="{{baseUrl}}/{{component.border_src}}" class="component-border" />

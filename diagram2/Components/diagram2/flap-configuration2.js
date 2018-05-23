@@ -29,8 +29,8 @@ window.FlapConfiguration = {
                 src: 'Flap_2.png',
                 shadow_src: 'Flap_2_shadow.png',
                 border_src: 'Flap_2_stroke.png',
-                desc: 'Component 1 description'
-
+                desc: 'Component 1 description',
+                flip_dir: 'right'
             },
         'Flap-3':
             {
