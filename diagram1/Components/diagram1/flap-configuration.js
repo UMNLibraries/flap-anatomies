@@ -2,7 +2,7 @@ window.FlapConfiguration = {
     'shadow_suffix': '_shadow',
     'border_suffix': '_stroke',
     'flip-dir': 'right', // 'left', 'right', 'up', 'down'
-    'base-url': 'components/diagram1',
+    'base-url': 'Components/diagram1',
     'background': {
         path: 'Background.png',
         width: '1280px',
@@ -30,7 +30,7 @@ window.FlapConfiguration = {
                 shadow_src: 'Flap_2_shadow.png',
                 border_src: 'Flap_2_stroke.png',
                 desc: 'Component 1 description'
-                
+
             },
         'Flap-3':
             {
