@@ -29,8 +29,7 @@ window.FlapConfiguration = {
                 src: 'Flap_2.png',
                 shadow_src: 'Flap_2_shadow.png',
                 border_src: 'Flap_2_stroke.png',
-                desc: 'Component 1 description',
-                flip_dir: 'right'
+                desc: 'Component 1 description'
             },
         'Flap-3':
             {
@@ -107,7 +106,8 @@ window.FlapConfiguration = {
                             src: 'Flap_9.png',
                             shadow_src: 'Flap_9_shadow.png',
                             border_src: 'Flap_9_stroke.png',
-                            desc: 'Component 8 description'
+                            desc: 'Component 8 description',
+                            flip_dir: 'down'
                         },
                         'Flap-10':
                             {
