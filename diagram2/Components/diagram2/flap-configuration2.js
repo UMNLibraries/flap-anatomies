@@ -18,7 +18,7 @@ window.FlapConfiguration = {
                 src: 'Flap_1.png',
                 shadow_src: 'Flap_1_shadow.png',
                 border_src: 'Flap_1_stroke.png',
-                desc: 'Component 0 description'
+                desc: 'Flap 1 description'
             },
         'Flap-2':
             {
@@ -29,7 +29,7 @@ window.FlapConfiguration = {
                 src: 'Flap_2.png',
                 shadow_src: 'Flap_2_shadow.png',
                 border_src: 'Flap_2_stroke.png',
-                desc: 'Component 1 description'
+                desc: 'Flap 2 description'
             },
         'Flap-3':
             {
@@ -40,7 +40,7 @@ window.FlapConfiguration = {
                 src: 'Flap_3.png',
                 shadow_src: 'Flap_3_shadow.png',
                 border_src: 'Flap_3_stroke.png',
-                desc: 'Component 2 description'
+                desc: 'Flap 3 description'
             },
         'Flap-4':
             {
@@ -51,7 +51,7 @@ window.FlapConfiguration = {
                 src: 'Flap_4.png',
                 shadow_src: 'Flap_4_shadow.png',
                 border_src: 'Flap_4_stroke.png',
-                desc: 'Component 3 description'
+                desc: 'Flap 4 description'
             },
         'Flap-5':
             {
@@ -62,7 +62,7 @@ window.FlapConfiguration = {
                 src: 'Flap_5.png',
                 shadow_src: 'Flap_5_shadow.png',
                 border_src: 'Flap_5_stroke.png',
-                desc: 'Component 4 description'
+                desc: 'Flap 5 description'
             },
         'Flap-6':
             {
@@ -73,7 +73,7 @@ window.FlapConfiguration = {
                 src: 'Flap_6.png',
                 shadow_src: 'Flap_6_shadow.png',
                 border_src: 'Flap_6_stroke.png',
-                desc: 'Component 5 description'
+                desc: 'Flap 6 description'
             },
             'Flap-7':
                 {
@@ -84,7 +84,7 @@ window.FlapConfiguration = {
                     src: 'Flap_7.png',
                     shadow_src: 'Flap_7_shadow.png',
                     border_src: 'Flap_7_stroke.png',
-                    desc: 'Component 6 description'
+                    desc: 'Flap 7 description'
                 },
                 'Flap-8':
                     {
@@ -95,7 +95,7 @@ window.FlapConfiguration = {
                         src: 'Flap_8.png',
                         shadow_src: 'Flap_8_shadow.png',
                         border_src: 'Flap_8_stroke.png',
-                        desc: 'Component 7 description'
+                        desc: 'Flap 8 description'
                     },
                     'Flap-9':
                         {
@@ -106,7 +106,7 @@ window.FlapConfiguration = {
                             src: 'Flap_9.png',
                             shadow_src: 'Flap_9_shadow.png',
                             border_src: 'Flap_9_stroke.png',
-                            desc: 'Component 8 description',
+                            desc: 'Flap 9 description',
                             flip_dir: 'down'
                         },
                         'Flap-10':
@@ -118,7 +118,7 @@ window.FlapConfiguration = {
                                 src: 'Flap_10.png',
                                 shadow_src: 'Flap_10_shadow.png',
                                 border_src: 'Flap_10_stroke.png',
-                                desc: 'Component 9 description'
+                                desc: 'Flap 10 description'
                             }
     }
 };

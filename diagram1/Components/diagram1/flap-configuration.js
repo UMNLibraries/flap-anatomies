@@ -18,7 +18,7 @@ window.FlapConfiguration = {
                 src: 'Flap_1.png',
                 shadow_src: 'Flap_1_shadow.png',
                 border_src: 'Flap_1_stroke.png',
-                desc: 'Component 0 description'
+                desc: 'Flap 1 description'
             },
         'Flap-2':
             {
@@ -29,7 +29,7 @@ window.FlapConfiguration = {
                 src: 'Flap_2.png',
                 shadow_src: 'Flap_2_shadow.png',
                 border_src: 'Flap_2_stroke.png',
-                desc: 'Component 1 description'
+                desc: 'Flap 2 description'
 
             },
         'Flap-3':
@@ -41,7 +41,7 @@ window.FlapConfiguration = {
                 src: 'Flap_3.png',
                 shadow_src: 'Flap_3_shadow.png',
                 border_src: 'Flap_3_stroke.png',
-                desc: 'Component 2 description'
+                desc: 'Flap 3 description'
             },
         'Flap-4':
             {
@@ -52,7 +52,7 @@ window.FlapConfiguration = {
                 src: 'Flap_4.png',
                 shadow_src: 'Flap_4_shadow.png',
                 border_src: 'Flap_4_stroke.png',
-                desc: 'Component 3 description'
+                desc: 'Flap 4 description'
             },
         'Flap-5':
             {
@@ -63,7 +63,7 @@ window.FlapConfiguration = {
                 src: 'Flap_5.png',
                 shadow_src: 'Flap_5_shadow.png',
                 border_src: 'Flap_5_stroke.png',
-                desc: 'Component 4 description'
+                desc: 'Flap 5 description'
             },
         'Flap-6':
             {
@@ -74,7 +74,7 @@ window.FlapConfiguration = {
                 src: 'Flap_6.png',
                 shadow_src: 'Flap_6_shadow.png',
                 border_src: 'Flap_6_stroke.png',
-                desc: 'Component 5 description'
+                desc: 'Flap 6 description'
             }
     }
 };
