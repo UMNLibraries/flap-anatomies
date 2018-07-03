@@ -334,7 +334,7 @@ $(document).ready(function(){
   function changeDescription() {
       var selector = components[currentActive].index;
         // we have 5 flaps, bottom layer=6 so it gets custom text
-        var customText = "<h1>Last Component</h1>";
+        var customText = "Last Flap";
         if (selector != 6){
           $( "#custom-description" ).html(components[currentActive].self.data('desc'));
         } else {

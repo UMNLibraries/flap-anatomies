@@ -67,7 +67,7 @@ html,body{
 
     .flip-dir-down .flipped .flipper,
     .flipped .flip-dir-down.flipper {
-        transform: rotateX(-180deg);
+        transform: rotateX(180deg);
     }
 
 
@@ -77,24 +77,26 @@ html,body{
     transform-style: preserve-3d;
 	position: relative;
 }
-    .flip-dir-up .flipper,
-    .flip-dir-up.flipper {
-        transform-origin: center top;
-    }
-
-    .flip-dir-down .flipper,
-    .flip-dir-down.flipper {
-        transform-origin: center bottom;
-    }
 
     .flip-dir-left .flipper,
     .flip-dir-left.flipper {
         transform-origin: left center;
     }
 
+
+    .flip-dir-up .flipper,
+    .flip-dir-up.flipper {
+        transform-origin: center top;
+    }
+
     .flip-dir-right .flipper,
     .flip-dir-right.flipper {
         transform-origin: right center;
+    }
+
+    .flip-dir-down .flipper,
+    .flip-dir-down.flipper {
+        transform-origin: center bottom;
     }
 
 /* hide back of pane during swap */
