@@ -106,6 +106,18 @@ $(document).ready(function(){
         if (id == "six"){
           autoFlip(6,currentActive);
         }
+        if (id == "seven"){
+          autoFlip(7,currentActive);
+        }
+        if (id == "eight"){
+          autoFlip(8,currentActive);
+        }
+        if (id == "nine"){
+          autoFlip(9,currentActive);
+        }
+        if (id == "ten"){
+          autoFlip(10,currentActive);
+        }
     }
 
     // add onclick functions to each indicator
@@ -128,6 +140,18 @@ $(document).ready(function(){
         clickIndicator(this.id);
     });
     $("#i_six").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_seven").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_eight").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_nine").on( "click", function() {
+        clickIndicator(this.id);
+    });
+    $("#i_ten").on( "click", function() {
         clickIndicator(this.id);
     });
 
@@ -328,6 +352,18 @@ $(document).ready(function(){
     if (num != 6){
       $("#i_six").css('color', '');
     }
+    if (num != 7){
+      $("#i_seven").css('color', '');
+    }
+    if (num != 8){
+      $("#i_eight").css('color', '');
+    }
+    if (num != 9){
+      $("#i_nine").css('color', '');
+    }
+    if (num != 10){
+      $("#i_ten").css('color', '');
+    }
   }
 
   // dynamically change text in description, depends completely on which spread is being viewed
@@ -383,9 +419,37 @@ $(document).ready(function(){
           removeIndicators(5);
         }
         if (selector == 6){
+          $("#six").removeClass("hidden");
           $("#five").addClass("hidden");
+          $("#seven").addClass("hidden");
           $("#i_six").css('color', 'yellow');
           removeIndicators(6);
+        }
+        if (selector == 7){
+          $("#seven").removeClass("hidden");
+          $("#six").addClass("hidden");
+          $("#eight").addClass("hidden");
+          $("#i_seven").css('color', 'yellow');
+          removeIndicators(7);
+        }
+        if (selector == 8){
+          $("#eight").removeClass("hidden");
+          $("#seven").addClass("hidden");
+          $("#nine").addClass("hidden");
+          $("#i_eight").css('color', 'yellow');
+          removeIndicators(8);
+        }
+        if (selector == 9){
+          $("#nine").removeClass("hidden");
+          $("#eight").addClass("hidden");
+          $("#i_nine").css('color', 'yellow');
+          removeIndicators(9);
+        }
+        if (selector == 10){
+          $("#eight").removeClass("hidden");
+          $("#nine").addClass("hidden");
+          $("#i_ten").css('color', 'yellow');
+          removeIndicators(10);
         }
   }
 });
