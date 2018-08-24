@@ -253,3 +253,14 @@ hr {
     border: 0;
     border-top: 1px solid #ccc;
 }
+
+header {
+    background-color: #7a0019;
+    padding: 1em 1em 1em 2em;
+    color: #ffcc33;
+    border-bottom: 1px solid #141414;
+}
+
+header h1 {
+    font-size: 1.4em;
+}
