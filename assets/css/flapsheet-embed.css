@@ -255,12 +255,30 @@ hr {
 }
 
 header {
-    background-color: #7a0019;
+    background-color: #fbfbfb;
     padding: 1em 1em 1em 2em;
-    color: #ffcc33;
-    border-bottom: 1px solid #141414;
+    color: #1a1a1a;
+    border-bottom: 1px solid #ccc;
 }
 
 header h1 {
     font-size: 1.4em;
+}
+
+footer {
+    background-color: #fbfbfb;
+    padding: 2em 10em 2em 10em;
+    color: #1a1a1a;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+footer img {
+    height: 75px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin-bottom: 1em;
 }
