@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../assets/css/flapsheet-embed.css">
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="Components/diagram1/flap-configuration.js"></script>
-<script type="x-tmpl-mustache" id="component-markup">
+<!-- <script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
         {{#component}}
         <div class="flipper">
@@ -23,10 +23,10 @@
         </div>
         {{/component}}
     </div>
-</script>
+</script> -->
 
 <!-- feature detection for HTML5/CSS3 -->
-<script src="../assets/scripts/flapsheet-embed.js"></script>
+<!-- <script src="../assets/scripts/flapsheet-embed.js"></script> -->
 
 <script>
     function changePage() {
@@ -44,10 +44,11 @@
   <header>
       <h1 class="is-4">Early Interactive Books: Japanese Anatomical Flap Book</h1>
   </header>
+  <div class="flex">
+      <SVG width="100%" height="100%" viewBox="0 0 1280 1141">
+        <image xlink:href="components/diagram1/Background.png" x="0" y="0" width="100%" height="100%"></image>
+      </SVG>
 
-    <div class="flip-up-wrapper">
-        <div class="flip-up"></div>
-    </div>
     <div class="flap-info">
         <div class="hidden section" id="indicators">
             <span id="i_zero">&#11044;</span>
@@ -129,6 +130,7 @@
               </select>
           </div>
     </div>
+  </div>
   </div>
   <footer>
         <img src="../assets/logo.png"/>

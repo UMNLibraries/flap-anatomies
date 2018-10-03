@@ -282,3 +282,17 @@ footer img {
 footer p {
     margin-bottom: 1em;
 }
+
+.flex {
+    display: flex;
+}
+
+.flex svg {
+    flex-grow: 2;
+    flex-basis: 0;
+}
+
+.flex .flap-info {
+    flex-grow: 1;
+    flex-basis: 0;
+}
