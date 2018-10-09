@@ -4,7 +4,7 @@ window.FlapConfiguration = {
     'flip-dir': 'right', // 'left', 'right', 'up', 'down'
     'base-url': 'Components/diagram1',
     'background': {
-        path: 'Background.png',
+        path: 'background_diag1.png',
         width: '1280px',
         height: '1141px'
     },
