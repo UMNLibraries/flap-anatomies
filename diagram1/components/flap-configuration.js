@@ -2,7 +2,7 @@ window.FlapConfiguration = {
     'shadow_suffix': '_shadow',
     'border_suffix': '_stroke',
     'flip-dir': 'right', // 'left', 'right', 'up', 'down'
-    'base-url': 'Components/diagram1',
+    'base-url': 'components',
     'background': {
         path: 'background_diag1.png',
         width: '1280px',
