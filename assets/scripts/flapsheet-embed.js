@@ -41,7 +41,7 @@ $(document).ready(function() {
     var imageBorder = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 
     imageBorder.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', baseUrl + '/' + currentFlap.border_src);
-    imageBorder.setAttribute('class', 'component-img');
+    imageBorder.setAttribute('class', 'component-border');
     imageBorder.setAttribute('x', xValue);
     imageBorder.setAttribute('y', yValue);
     imageBorder.setAttribute('width', currentFlap.w + '%');
@@ -55,7 +55,6 @@ $(document).ready(function() {
     imageFront.setAttribute('height', currentFlap.h + '%');
 
     imageBack.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', baseUrl + '/' + currentFlap.shadow_src);
-    imageBack.setAttribute('class', 'component-img');
     imageBack.setAttribute('x', xValue);
     imageBack.setAttribute('y', yValue);
     imageBack.setAttribute('width', currentFlap.w + '%');
