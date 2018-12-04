@@ -7,14 +7,17 @@ $(document).ready(function() {
   var flipDir = FlapConfiguration['flip-dir'];
   var baseUrl = FlapConfiguration['base-url'];
 
-  $wrapper.addClass('flip-dir-' + flipDir);
-
   // Clear out any SVG elements currently in the target .flip-up element. This ensures we start
   // with a clean slate.
   $wrapper.find('.flip-up-wrapper').empty();
 
   // add background image
+  // var svgComponent = document.getElementById("svg-diagram-container");
   var svgComponent = $('svg.flip-up-wrapper');
+
+  //there is likely a better method for adding the "flip-dir" part of the class name
+  svgElement = document.getElementById('svg-diagram-container');
+  svgElement.setAttribute('class', svgComponent[0].classList.value + ' flip-dir-' + flipDir);
 
   //create background image svg
   var backgroundImage = document.createElementNS('http://www.w3.org/2000/svg', 'image');
@@ -24,6 +27,9 @@ $(document).ready(function() {
   backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'width', '100%');
   backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'height', '100%');
   svgComponent.append(backgroundImage);
+
+  var flipUp = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  flipUp.setAttribute('class', 'flip-up');
 
   idx = 1;
   for (var flap in FlapConfiguration.components) {
@@ -56,20 +62,34 @@ $(document).ready(function() {
     imageBack.setAttribute('height', currentFlap.h + '%');
 
     // create new grouping component
-    var mainGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    mainGroup.append(imageBack);
-    mainGroup.append(imageFront);
-    mainGroup.append(imageBorder);
+    var front_flip_up_comonent = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    front_flip_up_comonent.append(imageFront);
+    front_flip_up_comonent.append(imageBorder);
+    front_flip_up_comonent.setAttribute('class', 'front flip-up-component');
+
+    var back_flip_up_back = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    back_flip_up_back.append(imageBack);
+    back_flip_up_back.setAttribute('class', 'back flip-up-back');
+
+    var flipper = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    flipper.append(back_flip_up_back);
+    flipper.append(front_flip_up_comonent);
+    flipper.setAttribute('class', 'flipper');
+
+    var flipperContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    flipperContainer.append(flipper);
+
     if (idx == Object.keys(FlapConfiguration.components).length) {
-      mainGroup.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right active');
+      flipperContainer.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right active');
     } else {
-      mainGroup.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right');
+      flipperContainer.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right');
     }
-    // flip-up-component-wrapper component-1 right active
-    mainGroup.setAttribute('data', currentFlap.desc);
-    svgComponent.append(mainGroup);
+
+    flipperContainer.setAttribute('data', currentFlap.desc);
+    flipUp.append(flipperContainer);
     idx++;
   }
+  svgComponent.append(flipUp);
 
   var index = 0,
     currentActive = 0,
