@@ -11,20 +11,20 @@ html,body{
 
 
 .flip-up-wrapper{
-    background-size:contain;
-    background-repeat:no-repeat;
-    position:relative;
-    float: left;
+    flex-grow: 2;
+    flex-basis: 0;
 }
 
 .flip-up-component-wrapper{
-    position:absolute;
     pointer-events:all
 }
+
 .flip-up-component-wrapper.active{
     z-index:1000;
     cursor:pointer !important
 }
+
+/* what element is this refering to?*/
 .flip-up-component-wrapper.previous{
     cursor:pointer !important
 }
@@ -38,9 +38,9 @@ html,body{
     opacity: 0;
 }
 
-/*.flip-up-wrapper:hover .active .component-border {
+.flip-up-wrapper:hover .active .component-border {
     opacity: 1;
-}*/
+}
 
 .flip-up:hover .active .component-border {
     opacity: 1;
