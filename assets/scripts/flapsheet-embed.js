@@ -21,17 +21,18 @@ $(document).ready(function() {
 
   //create background image svg
   var backgroundImage = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'href', baseUrl + '/background_diag1.png');
-  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'x', '0');
-  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'y', '0');
-  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'width', '100%');
-  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'height', '100%');
+  backgroundImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', baseUrl + '/' + 'background_diag1.png');
+  backgroundImage.setAttribute('x', '0');
+  backgroundImage.setAttribute('y', '0');
+  backgroundImage.setAttribute('width', '100%');
+  backgroundImage.setAttribute('height', '100%');
   svgComponent.append(backgroundImage);
 
   var flipUp = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   flipUp.setAttribute('class', 'flip-up');
+  currentActive = Object.keys(FlapConfiguration.components).length - 1 //the active component is the loaded component
 
-  idx = 1;
+  idx = 0;
   for (var flap in FlapConfiguration.components) {
     var currentFlap = FlapConfiguration.components[flap];
     var xValue = currentFlap.x + '%';
@@ -49,10 +50,13 @@ $(document).ready(function() {
 
     imageFront.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', baseUrl + '/' + currentFlap.src);
     imageFront.setAttribute('class', 'component-img');
+    imageFront.setAttribute('id', 'image-' + idx);
     imageFront.setAttribute('x', xValue);
     imageFront.setAttribute('y', yValue);
     imageFront.setAttribute('width', currentFlap.w + '%');
     imageFront.setAttribute('height', currentFlap.h + '%');
+    // debugger;
+    imageFront.addEventListener("click", function(){autoFlip(idx, currentActive);});
 
     imageBack.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', baseUrl + '/' + currentFlap.shadow_src);
     imageBack.setAttribute('x', xValue);
@@ -62,8 +66,8 @@ $(document).ready(function() {
 
     // create new grouping component
     var front_flip_up_comonent = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    front_flip_up_comonent.append(imageFront);
     front_flip_up_comonent.append(imageBorder);
+    front_flip_up_comonent.append(imageFront);
     front_flip_up_comonent.setAttribute('class', 'front flip-up-component');
 
     var back_flip_up_back = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -78,7 +82,7 @@ $(document).ready(function() {
     var flipperContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     flipperContainer.append(flipper);
 
-    if (idx == Object.keys(FlapConfiguration.components).length) {
+    if (idx == Object.keys(FlapConfiguration.components).length - 1) {
       flipperContainer.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right active');
     } else {
       flipperContainer.setAttribute('class', 'flip-up-component-wrapper component-' + idx + ' right');
@@ -90,24 +94,20 @@ $(document).ready(function() {
   }
   svgComponent.append(flipUp);
 
-  var index = 0,
-    currentActive = 0,
-    components = [];
+  var index = Object.keys(FlapConfiguration.components).length,
+  components = [];
 
   // use retButton to verify where the autoFlip call is coming from
   var retButton = false;
 
-  // clicked is the flap you want to navigate to, active is the current flap
+  // Method determines the direction of the flip
+  // clicked: the index of the component that was clicked
+  // active: is the index of the currently active component
   function autoFlip(clicked, active) {
     if (clicked > active) {
-      //flip up
-      for (var i = active; i < clicked; i++) {
-        updateCurrentActive('up', 0);
-      }
+      updateCurrentActive('up', 0);
     } else if (clicked < active) {
-      for (var i = active; i > clicked; i--) {
-        updateCurrentActive('down', 0);
-      }
+      updateCurrentActive('down', 0);
     }
   }
 
@@ -151,7 +151,7 @@ $(document).ready(function() {
     }
   }
 
-  // add onclick functions to each indicator
+  // add onclick functions to each bullet point indicator
   $('#i_zero').on('click', function() {
     clickIndicator(this.id);
   });
@@ -221,17 +221,23 @@ $(document).ready(function() {
   var i = 1;
   // Initialize the component list, creating the pseudo-class described above for
   // each component found
-  while ($('.component-' + i).length) {
+  // while ($('.component-' + i).length) {
+  //   var component = new Component('component-' + i);
+  //   components.push(component);
+  //   i++;
+  // }
+
+  while (i <= Object.keys(FlapConfiguration.components).length) {
     var component = new Component('component-' + i);
     components.push(component);
     i++;
-  }
+  }   
 
   // Helper method for configuring the current active state. currentActive is just maintaining
   // the index of the currently-active component
   function updateCurrentActive(direction, timeout) {
+    console.log("updateCurrentActive")
     component = components[currentActive];
-
     // check if the indicators are hidden, if they are this means the
     // user has clicked a flap instead of clicking the start button
     // if retButton is true we do not want to to execute this code because it has already been done
@@ -247,12 +253,13 @@ $(document).ready(function() {
     // Call the autoDrag function, which triggers the transition for lifting up
     // or dragging down the component
     autoDrag(component, direction, timeout);
-
-    if (direction == 'up' && currentActive < components.length - 1) {
-      currentActive++;
+    if (direction == 'up' && currentActive <= components.length - 1) {
+      // currentActive++;
+      currentActive--;
       changeDescription();
     } else if (direction == 'down') {
-      currentActive--;
+      // currentActive--;
+      currentActive++;
       changeDescription();
     }
   }
@@ -290,14 +297,24 @@ $(document).ready(function() {
     // if timeout is 0 then this function is getting called from autoFlip
     // in this case we will not use any timeouts
     if (timeout == 0 && direction == 'up') {
-      component.self.addClass('flipped');
-      component.self.removeClass('active').css('z-index', 1000);
+      var currentActiveElement = $(".component-" + currentActive)[0];
+      var futureActiveElement = $(".component-" + (currentActive - 1))[0];
+      // component.self.addClass('flipped');
+      // component.self.removeClass('active').css('z-index', 1000);
+      
+      // For trying SVG transform attribute, we need to remove the flipped class and set the transform attribute.
+      currentActiveElement.setAttribute('class', 'flipped flip-up-component-wrapper component-' + currentActive + ' right')
+      currentActiveElement.setAttribute('backface-visibility', 'hidden')
+      futureActiveElement.setAttribute('class', 'flip-up-component-wrapper component-' + (currentActive - 1) + ' right active')
+
+      // not sure what this is doing
       if (component.self.next('.flip-up-component-wrapper')[0]) {
         $('.previous').removeClass('previous');
         component.self.addClass('previous');
         component.self.next('.flip-up-component-wrapper').addClass('active');
       }
     }
+
     if (timeout == 0 && direction == 'down') {
       var prevComponent;
       prevComponent = components[component.index - 1];
@@ -305,7 +322,6 @@ $(document).ready(function() {
       $('.previous').removeClass('previous').removeClass('flipped').addClass('active');
 
       prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
-      prevComponent.self.css('z-index', '');
     }
     if (timeout != 0 && direction == 'up') {
       component.self.addClass('flipped');
