@@ -21,26 +21,31 @@ of this element*/
 /*.flip-up-component-wrapper is the an element
 that wraps both the font, back, and stroke of a flap */
 .flip-up-component-wrapper {
-    pointer-events:all
+    pointer-events: all
 }
 
-/**/
+/* The cursor should always be a pointer
+ for active flaps*/
 .flip-up-component-wrapper.active {
-    cursor:pointer !important
+    cursor: pointer !important
 }
 
-/* what element is this refering to?*/
+/* The cursor should always be a pointer
+ for previous flaps */
 .flip-up-component-wrapper.previous {
     cursor:pointer !important
 }
 
+/* Each flap should */
 .component-border {
     opacity: 0;
 }
 
-.flip-up-wrapper:hover .active .component-border {
+/*.flip-up-wrapper */
+/* Is this necessary given the next line? */
+/*.flip-up-wrapper:hover .active .component-border {
     opacity: 1;
-}
+}*/
 
 .flip-up:hover .active .component-border {
     opacity: 1;
@@ -49,32 +54,59 @@ that wraps both the font, back, and stroke of a flap */
 /* entire container, keeps perspective */
 .flip-up-component-wrapper {
 	perspective: 1000px;
+    /*
+    if a component is in the rotated state,
+    the back of the initial component should be hidden
+    */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
 /* flip the pane when hovered */
+/* flipper contains the back and front of the component */
 .flip-dir-left .flipped .flipper {
+    /*
+    transform-box indicates that a transform
+    should happen in reference to the element's (i.e., the flap)
+    bounding box
+    */
     transform-box: fill-box;
+    /*
+    Rotate 180 deg around the y-axis,
+    negative values indicate the rotation to the left
+    */
     transform: rotateY(-180deg);
 }
 
 .flip-dir-right .flipped .flipper {
     transform-box: fill-box;
+    /*
+    Rotate 180 deg around the y-axis,
+    positive values indicate the rotation to the right
+    */
 	transform: rotateY(180deg);
 }
 
 .flip-dir-up .flipped .flipper {
     transform-box: fill-box;
+    /*
+    Rotate 180 deg around the x-axis,
+    positive values indicate the rotation to the top
+    */
     transform: rotateX(180deg);
 }
 
 .flip-dir-down .flipped .flipper {
     transform-box: fill-box;
+    /*
+    Rotate 180 deg around the x-axis,
+    negative values indicate the rotation to the bottom
+    */
     transform: rotateX(-180deg);
 }
 
-/* flip speed goes here */
+/* .flipper contains the back and front of the component */
+/* flip animation speed is controlled here */
 .flipper {
     transition: 10s;
     transform-style: preserve-3d;
