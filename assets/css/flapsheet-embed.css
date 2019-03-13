@@ -144,12 +144,13 @@ that wraps both the font, back, and stroke of a flap */
     left: 0;
 }
 
+/*This makes the back of the flap load in rotated (e.g. in backface) */
 .flip-dir-left .back,
 .flip-dir-right .back {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    transform-box: fill-box;
-    -webkit-transform-box: fill-box;
+    /*transform-box: fill-box;
+    -webkit-transform-box: fill-box;*/
     transform-origin: center;
     -webkit-transform-origin: center;
     transform: rotateY(180deg);
