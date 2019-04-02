@@ -1,40 +1,41 @@
 html,body{
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     padding: 0;
     box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
-
 .flip-up-wrapper{
-    background-size:contain;
-    background-repeat:no-repeat;
-    position:relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
     float: left;
 }
 
 .flip-up-component-wrapper{
-    position:absolute;
-    pointer-events:all
+    position: absolute;
+    pointer-events: all;
 }
+
 .flip-up-component-wrapper.active{
-    z-index:1000;
-    cursor:pointer !important
+    z-index: 1000;
+    cursor: pointer !important;
 }
+
 .flip-up-component-wrapper.previous{
-    cursor:pointer !important
+    cursor: pointer !important;
 }
 
 .component-border{
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0;
-    left:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     opacity: 0;
 }
 
@@ -50,22 +51,22 @@ html,body{
 .flip-up-component-wrapper {
 	perspective: 1000px;
 }
-    /* flip the pane when hovered */
-    .flip-dir-left .flipped .flipper {
-        transform: rotateY(-180deg);
-    }
-	.flip-dir-right .flipped .flipper {
-		transform: rotateY(180deg);
-    }
 
-    .flip-dir-up .flipped .flipper {
-        transform: rotateX(180deg);
-    }
+/* flip the pane when hovered */
+.flip-dir-left .flipped .flipper {
+    transform: rotateY(-180deg);
+}
+.flip-dir-right .flipped .flipper {
+	transform: rotateY(180deg);
+}
 
-    .flip-dir-down .flipped .flipper {
-        transform: rotateX(-180deg);
-    }
+.flip-dir-up .flipped .flipper {
+    transform: rotateX(180deg);
+}
 
+.flip-dir-down .flipped .flipper {
+    transform: rotateX(-180deg);
+}
 
 /* flip speed goes here */
 .flipper {
@@ -73,21 +74,22 @@ html,body{
     transform-style: preserve-3d;
 	position: relative;
 }
-    .flip-dir-up .flipper {
-        transform-origin: center top;
-    }
 
-    .flip-dir-down .flipper {
-        transform-origin: center bottom;
-    }
+.flip-dir-up .flipper {
+    transform-origin: center top;
+}
 
-    .flip-dir-left .flipper {
-        transform-origin: left center;
-    }
+.flip-dir-down .flipper {
+    transform-origin: center bottom;
+}
 
-    .flip-dir-right .flipper {
-        transform-origin: right center;
-    }
+.flip-dir-left .flipper {
+    transform-origin: left center;
+}
+
+.flip-dir-right .flipper {
+    transform-origin: right center;
+}
 
 /* hide back of pane during swap */
 .front, .back {
@@ -107,99 +109,128 @@ html,body{
     transform: rotateX(180deg);
 }
 
-
 .component-1 {
-    z-index:11
+    z-index: 11;
 }
+
 .component-1 .flip-up-component {
-    z-index:100
+    z-index: 100;
 }
+
 .component-1 .flip-up-back {
-    z-index:110
+    z-index: 110;
 }
+
 .component-1 .flip-up-shadow {
-    z-index:105
+    z-index: 105;
 }
+
 .component-2 {
-    z-index:10
+    z-index: 10;
 }
+
 .component-2 .flip-up-component {
-    z-index:90
+    z-index: 90;
 }
+
 .component-2 .flip-up-back {
-    z-index:120
+    z-index: 120;
 }
+
 .component-3 {
-    z-index:9
+    z-index: 9;
 }
+
 .component-3 .flip-up-component {
-    z-index:80
+    z-index: 80;
 }
+
 .component-3 .flip-up-back {
-    z-index:130
+    z-index: 130;
 }
+
 .component-4 {
-    z-index:8
+    z-index: 8;
 }
+
 .component-4 .flip-up-component {
-    z-index:70
+    z-index: 70;
 }
+
 .component-4 .flip-up-back {
-    z-index:140
+    z-index: 140;
 }
+
 .component-5 {
-    z-index:7
+    z-index: 7;
 }
+
 .component-5 .flip-up-component {
-    z-index:60
+    z-index: 60;
 }
+
 .component-5 .flip-up-back {
-    z-index:150
+    z-index: 150;
 }
+
 .component-6 {
-    z-index:6
+    z-index: 6;
 }
+
 .component-6 .flip-up-component {
-    z-index:50
+    z-index: 50;
 }
+
 .component-6 .flip-up-back {
-    z-index:160
+    z-index: 160;
 }
+
 .component-7 {
-    z-index:5
+    z-index: 5;
 }
+
 .component-7 .flip-up-component {
-    z-index:40
+    z-index: 40;
 }
+
 .component-7 .flip-up-back {
-    z-index:170
+    z-index: 170;
 }
+
 .component-8 {
-    z-index:4
+    z-index: 4;
 }
+
 .component-8 .flip-up-component {
-    z-index:30
+    z-index: 30;
 }
+
 .component-8 .flip-up-back {
-    z-index:180
+    z-index: 180;
 }
+
 .component-9 {
-    z-index:3
+    z-index: 3;
 }
+
 .component-9 .flip-up-component {
-    z-index:20
+    z-index: 20;
 }
+
 .component-9 .flip-up-back {
-    z-index:190
+    z-index: 190;
 }
+
 .component-10 {
-    z-index:2
+    z-index: 2;
 }
+
 .component-10 .flip-up-component {
-    z-index:10
+    z-index: 10;
 }
+
 .component-10 .flip-up-back {
-    z-index:200
+    z-index: 200;
 }
 
 .flap-info {
@@ -229,7 +260,7 @@ html,body{
 span { cursor: pointer; }
 
 #startup{
-  text-align: center;
+    text-align: center;
 }
 
 .is-scrollable {
