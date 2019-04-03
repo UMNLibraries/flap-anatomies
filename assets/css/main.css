@@ -1,0 +1,39 @@
+/*-------------------------*/
+/* General Application CSS */
+/*-------------------------*/
+
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*-------------*/
+/* DIAGRAM CSS */
+/*-------------*/
+
+/* This element contains the diagrams */
+.flip-up-wrapper {
+    background-size: contain;
+    background-repeat: no-repeat;
+    /*Commenting out position and float
+    because the properties were being
+    overwritten in the browser*/
+    /*position: relative;
+    float: left;*/
+}
+
+/* This element contains each of the 
+flap comonents */
+.flip-up-component-wrapper {
+    position: absolute;
+    /* Commented out pointer-events
+    because 'all' is only applicable 
+    to SVG elements */
+    /*pointer-events: all;*/
+}
