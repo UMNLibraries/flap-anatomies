@@ -2,7 +2,7 @@
 /* General Application CSS */
 /*-------------------------*/
 
-html,body{
+html,body {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -21,11 +21,11 @@ html,body{
 .flip-up-wrapper {
     background-size: contain;
     background-repeat: no-repeat;
-    /*Commenting out position and float
-    because the properties were being
-    overwritten in the browser*/
-    /*position: relative;
-    float: left;*/
+    /* Relative positioning enables child elements to be positioned absolutely
+    relative to the parent element. Float left enables sidebar to take up
+    left-over space to the right of the flip-up wrapper*/
+    position: relative;
+    float: left;
 }
 
 /* This element contains each of the 
@@ -36,4 +36,31 @@ flap comonents */
     because 'all' is only applicable 
     to SVG elements */
     /*pointer-events: all;*/
+}
+
+.flip-up-component-wrapper.active {
+    z-index: 1000; /* so it's always above all other elements */
+    cursor: pointer !important; /*to indicate that the element is clickable */
+}
+
+.flip-up-component-wrapper.previous {
+    cursor: pointer !important; /*to indicate that the element is clickable */
+}
+
+/* This is the stroke of the flaps. */
+/* The stroke is a png file. */
+.component-border {
+    width: 100%;
+    height: 100%;
+    /* This will load to the top-left of the flip-up component wrapper
+    for the flap */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Not visible until hovered or active, see next lines*/
+    opacity: 0;
+}
+
+.flip-up:hover .active .component-border {
+    opacity: 1;
 }
