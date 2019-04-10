@@ -1,4 +1,4 @@
-/*-------------------------*/
+-------------------------*/
 /* General Application CSS */
 /*-------------------------*/
 
@@ -23,7 +23,7 @@ html,body {
     background-repeat: no-repeat;
     /* Relative positioning enables child elements to be positioned absolutely
     relative to the parent element. Float left enables sidebar to take up
-    left-over space to the right of the flip-up wrapper*/
+    left-over space to the right of the flip-up wrapper */
     position: relative;
     float: left;
 }
@@ -36,6 +36,8 @@ flap comonents */
     because 'all' is only applicable 
     to SVG elements */
     /*pointer-events: all;*/
+    /* entire container, keeps perspective during transform animation */
+    perspective: 1000px;
 }
 
 .flip-up-component-wrapper.active {
@@ -57,10 +59,75 @@ flap comonents */
     position: absolute;
     top: 0;
     left: 0;
-    /* Not visible until hovered or active, see next lines*/
+    /* Not visible until hovered or active, see next lines */
     opacity: 0;
 }
 
 .flip-up:hover .active .component-border {
     opacity: 1;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Hide the "back" of the flap when rotated */
+
+.front, .back {
+    backface-visibility: hidden;
+}
+
+/* Left direction is not being implemented yet */
+/*.flip-dir-left .back,*/
+.flip-dir-right .back {
+    transform: rotateY(180deg);
+}
+
+/*---------------*/
+/* Animation CSS */
+/*---------------*/
+
+.flipper {
+    transition: 0.6s;
+    /*transform-style: preserve-3d;*/
+    /*position: relative;*/
+}
+
+/* This is the flipping animation */
+.flip-dir-right .flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+/* These directions have not been implemented yet */
+/*.flip-dir-right .flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+.flip-dir-up .flipped .flipper {
+    transform: rotateX(180deg);
+}
+
+.flip-dir-down .flipped .flipper {
+    transform: rotateX(-180deg);
+}
+*/
+
+/* Orient the flipping animation around the edge */
+.flip-dir-right .flipper {
+    transform-origin: right center;
+}
+
+/* These directions have not been implemented yet */
+/*.flip-dir-up .flipper {
+    transform-origin: center top;
+}
+
+.flip-dir-down .flipper {
+    transform-origin: center bottom;
+}
+
+.flip-dir-left .flipper {
+    transform-origin: left center;
 }
