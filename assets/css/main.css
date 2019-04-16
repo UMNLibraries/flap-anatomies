@@ -74,7 +74,6 @@ flap comonents */
 }
 
 /* Hide the "back" of the flap when rotated */
-
 .front, .back {
     backface-visibility: hidden;
 }
@@ -85,13 +84,21 @@ flap comonents */
     transform: rotateY(180deg);
 }
 
+/* These directions have not been implemented yet */
+/*.flip-dir-up .back,
+.flip-dir-down .back {
+    transform: rotateX(180deg);
+}*/
+
 /*---------------*/
 /* Animation CSS */
 /*---------------*/
 
 .flipper {
     transition: 0.6s;
-    /*transform-style: preserve-3d;*/
+    /* Preserve-3d needs to be set so backface-visibility property
+    works, because backface-visibility only works on 3D transformations */
+    transform-style: preserve-3d;
     /*position: relative;*/
 }
 
@@ -131,3 +138,78 @@ flap comonents */
 .flip-dir-left .flipper {
     transform-origin: left center;
 }
+
+/*--------------------------*/
+/* Ordering Flap Components */
+/*--------------------------*/
+
+/* To ensure flaps are appearing in the correct order */
+.component-1 {
+    z-index: 11;
+}
+
+.component-2 {
+    z-index: 10;
+}
+
+.component-3 {
+    z-index: 9;
+}
+
+.component-4 {
+    z-index: 8;
+}
+
+.component-5 {
+    z-index: 7;
+}
+
+.component-6 {
+    z-index: 6;
+}
+
+/* To ensure back of flaps are appearing in the correct order */
+.component-1 .flip-up-back {
+    z-index: 110;
+}
+.component-2 .flip-up-back {
+    z-index: 120;
+}
+.component-3 .flip-up-back {
+    z-index: 130;
+}
+.component-4 .flip-up-back {
+    z-index: 140;
+}
+
+.component-5 .flip-up-back {
+    z-index: 150;
+}
+
+.component-6 .flip-up-back {
+    z-index: 160;
+}
+
+/* Not sure if these are needed for Diagram 2 */
+/*.component-1 .flip-up-component {
+    z-index: 100;
+}
+
+.component-2 .flip-up-component {
+    z-index: 90;
+}
+
+.component-3 .flip-up-component {
+    z-index: 80;
+}
+.component-4 .flip-up-component {
+    z-index: 70;
+}
+
+.component-5 .flip-up-component {
+    z-index: 60;
+}
+
+.component-6 .flip-up-component {
+    z-index: 50;
+}*/
