@@ -13,6 +13,23 @@ html,body {
     box-sizing: inherit;
 }
 
+button {
+    background-color: white;
+    text-align: center;
+    padding: 0.75em;
+    white-space: nowrap;
+    border-radius: 0.5em;
+    border: solid 1px black;
+    font-weight: 500;
+}
+
+button:hover {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
 /*--------*/
 /* HEADER */
 /*--------*/
