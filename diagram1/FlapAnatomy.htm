@@ -5,7 +5,6 @@
 
 <script src="../assets/scripts/jquery.min.js"></script>
 <link href="../assets/css/reset.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
 <link rel="stylesheet" href="../assets/css/main.css">
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="Components/diagram1/flap-configuration.js"></script>
@@ -85,26 +84,23 @@
 
       <div id="startup">
 
-          <div class="is-scrollable">
+          <div class="introduction">
           <p>
             Flap anatomies were important, interactive diagrams used for teaching human and animal anatomy in the early modern period.
             These paper technologies allowed medical students, surgeons, and other interested people to visualize the layers of skin, muscle,
             organs, and bones that compose the fabric of the body.
           </p>
-          <br>
           <p>
              Flap anatomies created in Western Europe by people like Johannes Remmelin (Catoptrum Microcosmicum, 1619) were regularly printed in books,
              pamphlets, and individual sheets. While they are uncommon in rare book libraries today because they are so fragile,
              they have been explored by historians.
           </p>
-          <br>
           <p>
             East Asian examples, on the other hand, are all but unknown.
             This manuscript is anonymous, and we have not seen other examples of Japanese flap anatomies.
             This volume, thus, presents somewhat of a mystery: Who made it? Why? Were they inspired by European
             examples brought to Japan by the Dutch? Who used it?
           </p>
-          <br>
           <p>
             This mid-Edo (late-18th or early 19th century) flap anatomy is unique for several reasons:
             It was handmade, from the outlines and coloring to cutting and assembling, rather than printed
@@ -115,15 +111,13 @@
           </p>
           </div>
           <br>
-          <button class="button is-medium" type="button" id="start"> start </button>
+          <button type="button" id="start"> start </button>
           <hr>
-          <h1 class="is-5" style="color: white;"> Select a Diagram: </h1>
-          <div class="select is-medium">
-              <select onchange="changePage()" id="dropdown">
-                <option selected value="./FlapAnatomy.htm">Diagram 1</option>
-                <option value="../diagram2/FlapAnatomy.htm">Diagram 2</option>
-              </select>
-          </div>
+          <h2> Select a Diagram: </h2>
+          <select onchange="changePage()">
+            <option selected value="./FlapAnatomy.htm">Diagram 1</option>
+            <option value="../diagram2/FlapAnatomy.htm">Diagram 2</option>
+          </select>
     </div>
   </div>
   <footer>

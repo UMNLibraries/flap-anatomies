@@ -7,20 +7,37 @@ html,body {
     height: 100%;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
+h1 {
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+p {
+    padding: 0.5em;
+}
+
 button {
     background-color: white;
     text-align: center;
-    padding: 0.75em;
+    width: 10em;
+    padding: 0.5em;
     white-space: nowrap;
     border-radius: 0.5em;
     border: solid 1px black;
     font-weight: 500;
+    font-size: 1.2em;
 }
 
 button:hover {
@@ -28,6 +45,12 @@ button:hover {
     background-color: black;
     color: white;
     transition: 0.5s;
+}
+
+select {
+    width: 10em;
+    font-size: 1.2em;
+    padding: 0.5em;
 }
 
 /*--------*/
@@ -39,7 +62,6 @@ header {
     padding: 1em 1em 1em 2em;
     color: #1a1a1a;
     border-bottom: 1px solid #ccc;
-    font-size: 1.4em;
 }
 
 /*---------*/
@@ -84,7 +106,7 @@ are in the order. Like a nav and progress bar */
 }
 
 /* The introductory text to the flap diagram */
-.is-scrollable {
+.introduction {
     overflow-y: scroll;
     text-align: left;
     padding: 5px;
