@@ -7,24 +7,23 @@
 <link href="../assets/css/reset.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
 <link rel="stylesheet" href="../assets/css/flapsheet-embed.css">
-<script src="../assets/scripts/flapsheet-embed.js"></script>
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="components/flap-configuration.js"></script>
 <script src="../assets/scripts/load-flaps.js"></script>
 <!-- <script type="x-tmpl-mustache" id="component-markup">
-    <g class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
         {{#component}}
-        <g class="flipper">
-            <g class="front flip-up-component">
-                <image xlink:href="{{baseUrl}}/{{component.src}}" class="component-img"><image/>
-                <image xlink:href="{{baseUrl}}/{{component.border_src}}" class="component-border"><image/>
-            </g>
-            <g class="back flip-up-back">
-                <image class="component-back" xlink:href="{{baseUrl}}/{{component.shadow_src}}"><image/>
-            </g>
-        </g>
+        <div class="flipper">
+            <div class="front flip-up-component">
+                <img src="{{baseUrl}}/{{component.src}}" class="component-img" />
+                <img src="{{baseUrl}}/{{component.border_src}}" class="component-border" />
+            </div>
+            <div class="back flip-up-back">
+                <img src="{{baseUrl}}/{{component.shadow_src}}"/>
+            </div>
+        </div>
         {{/component}}
-    </g>
+    </div>
 </script> -->
 
 <!-- feature detection for HTML5/CSS3 -->
@@ -47,7 +46,11 @@
       <h1 class="is-4">Early Interactive Books: Japanese Anatomical Flap Book</h1>
   </header>
   <div class="flex">
-    <svg class="flip-up-wrapper" id="svg-diagram-container" width="100%" height="100%" viewBox="0 0 1280 1141" />
+      <SVG width="100%" height="100%" viewBox="0 0 1280 1141">
+        <image xlink:href="components/background_diag1.png" x="0" y="0" width="100%" height="100%"></image>
+        <image xlink:href="components/flap_6.png" x="57.3%" y="7.4%"></image>
+      </SVG>
+
     <div class="flap-info">
         <div class="hidden section" id="indicators">
             <span id="i_zero">&#11044;</span>
