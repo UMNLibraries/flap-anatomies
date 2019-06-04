@@ -1,0 +1,353 @@
+/*-------------------------*/
+/* General Application CSS */
+/*-------------------------*/
+
+html,body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+p {
+    padding: 0.5em;
+}
+
+button {
+    background-color: white;
+    text-align: center;
+    width: 10em;
+    padding: 0.5em;
+    white-space: nowrap;
+    border-radius: 0.5em;
+    border: solid 1px black;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+button:hover {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+select {
+    width: 10em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+
+/*--------*/
+/* HEADER */
+/*--------*/
+
+header {
+    background-color: #fbfbfb;
+    padding: 1em 1em 1em 2em;
+    color: #1a1a1a;
+    border-bottom: 1px solid #ccc;
+}
+
+/*---------*/
+/* SIDEBAR */
+/*---------*/
+
+/* This is the whole sidebar including the indicators, description,
+etc. */
+.flap-info {
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background-color: black;
+    color: white;
+/*  z-index: 10000;*/
+}
+
+/* Title to the description. Needs to be renamed */
+#custom-description {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+/* Applied to flap descriptions to hide and unhide them */
+.hidden {
+    display: none;
+}
+
+/* Indicators let people know which flap is active and where they
+are in the order. Like a nav and progress bar */
+#indicators {
+    text-align: center;
+    cursor: pointer;
+}
+
+/* The startup contains all the elements in the initial sidebar
+(introduction to project, button, dropdown) */
+#startup {
+    /* So the elements align center */
+    text-align: center;
+}
+
+/* The introductory text to the flap diagram */
+.introduction {
+    overflow-y: scroll;
+    text-align: left;
+    padding: 5px;
+    line-height: 1.2em;
+    height: 400px;
+    border-color: #808080;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    font-weight: 300;
+}
+
+/* This is the button that takes you back to the startup screen */
+#return {
+    margin-top: 10%;
+}
+
+/* The line divider below the start button */
+hr {
+    display: block;
+    height: 1px;
+}
+
+/*--------*/
+/* FOOTER */
+/*--------*/
+
+footer {
+    background-color: #fbfbfb;
+    padding: 2em 10em 2em 10em;
+    color: #1a1a1a;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    margin-bottom: 1em;
+}
+
+footer img {
+    height: 75px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+/*-------------*/
+/* DIAGRAM CSS */
+/*-------------*/
+
+/* This element contains the diagrams */
+.flip-up-wrapper {
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* Relative positioning enables child elements to be positioned absolutely
+    relative to the parent element. Float left enables sidebar to take up
+    left-over space to the right of the flip-up wrapper */
+    position: relative;
+    float: left;
+}
+
+/* This element contains each of the 
+flap comonents */
+.flip-up-component-wrapper {
+    position: absolute;
+    /* Commented out pointer-events
+    because 'all' is only applicable 
+    to SVG elements */
+    /*pointer-events: all;*/
+    /* entire container, keeps perspective during transform animation */
+    perspective: 1000px;
+}
+
+.flip-up-component-wrapper.active {
+    z-index: 1000; /* so it's always above all other elements */
+    cursor: pointer !important; /*to indicate that the element is clickable */
+}
+
+.flip-up-component-wrapper.previous {
+    cursor: pointer !important; /*to indicate that the element is clickable */
+}
+
+/* This is the stroke of the flaps. */
+/* The stroke is a png file. */
+.component-border {
+    width: 100%;
+    height: 100%;
+    /* This will load to the top-left of the flip-up component wrapper
+    for the flap */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Not visible until hovered or active, see next lines */
+    opacity: 0;
+}
+
+.flip-up:hover .active .component-border {
+    opacity: 1;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Hide the "back" of the flap when rotated */
+.front, .back {
+    backface-visibility: hidden;
+}
+
+/* Left direction is not being implemented yet */
+/*.flip-dir-left .back,*/
+.flip-dir-right .back {
+    transform: rotateY(180deg);
+}
+
+/* These directions have not been implemented yet */
+/*.flip-dir-up .back,
+.flip-dir-down .back {
+    transform: rotateX(180deg);
+}*/
+
+/*---------------*/
+/* ANIMATION CSS */
+/*---------------*/
+
+.flipper {
+    transition: 0.6s;
+    /* Preserve-3d needs to be set so backface-visibility property
+    works, because backface-visibility only works on 3D transformations */
+    transform-style: preserve-3d;
+    /*position: relative;*/
+}
+
+/* This is the flipping animation */
+.flip-dir-right .flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+/* These directions have not been implemented yet */
+/*.flip-dir-right .flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+.flip-dir-up .flipped .flipper {
+    transform: rotateX(180deg);
+}
+
+.flip-dir-down .flipped .flipper {
+    transform: rotateX(-180deg);
+}
+*/
+
+/* Orient the flipping animation around the edge */
+.flip-dir-right .flipper {
+    transform-origin: right center;
+}
+
+/* These directions have not been implemented yet */
+/*.flip-dir-up .flipper {
+    transform-origin: center top;
+}
+
+.flip-dir-down .flipper {
+    transform-origin: center bottom;
+}
+
+.flip-dir-left .flipper {
+    transform-origin: left center;
+}
+
+/*--------------------------*/
+/* ORDERING FLAP COMPONENTS */
+/*--------------------------*/
+
+/* To ensure flaps are appearing in the correct order */
+.component-1 {
+    z-index: 11;
+}
+
+.component-2 {
+    z-index: 10;
+}
+
+.component-3 {
+    z-index: 9;
+}
+
+.component-4 {
+    z-index: 8;
+}
+
+.component-5 {
+    z-index: 7;
+}
+
+.component-6 {
+    z-index: 6;
+}
+
+/* To ensure back of flaps are appearing in the correct order */
+.component-1 .flip-up-back {
+    z-index: 110;
+}
+.component-2 .flip-up-back {
+    z-index: 120;
+}
+.component-3 .flip-up-back {
+    z-index: 130;
+}
+.component-4 .flip-up-back {
+    z-index: 140;
+}
+
+.component-5 .flip-up-back {
+    z-index: 150;
+}
+
+.component-6 .flip-up-back {
+    z-index: 160;
+}
+
+/* Not sure if these are needed for Diagram 2 */
+/*.component-1 .flip-up-component {
+    z-index: 100;
+}
+
+.component-2 .flip-up-component {
+    z-index: 90;
+}
+
+.component-3 .flip-up-component {
+    z-index: 80;
+}
+.component-4 .flip-up-component {
+    z-index: 70;
+}
+
+.component-5 .flip-up-component {
+    z-index: 60;
+}
+
+.component-6 .flip-up-component {
+    z-index: 50;
+}*/
