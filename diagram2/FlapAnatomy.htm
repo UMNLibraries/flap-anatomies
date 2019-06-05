@@ -5,12 +5,10 @@
 
 <script src="../assets/scripts/jquery.min.js"></script>
 <link href="../assets/css/reset.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-<!-- <link rel="stylesheet" href="../assets/css/flapsheet-embed.css"> -->
 <link rel="stylesheet" href="../assets/css/main.css">
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="components/flap-configuration2.js"></script>
-<!-- <script type="x-tmpl-mustache" id="component-markup">
+<script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}}" id="component-{{idx}}">
         {{#component}}
         <div class="flipper{{#component.flip_dir}} flip-dir-{{component.flip_dir}}{{/component.flip_dir}}">
@@ -24,10 +22,10 @@
         </div>
         {{/component}}
     </div>
-</script> -->
+</script>
 
 <!-- feature detection for HTML5/CSS3 -->
-<!-- <script src="../assets/scripts/flapsheet-embed.js"></script> -->
+<script src="../assets/scripts/flapsheet-embed.js"></script>
 
 <script>
     function changePage() {
@@ -43,14 +41,12 @@
 </head>
 <body>
     <header>
-      <h1 class="is-4">Early Interactive Books: Japanese Anatomical Flap Book</h1>
+      <h1>Early Interactive Books: Japanese Anatomical Flap Book</h1>
     </header>
-
-   <div class="flex">
-      <SVG width="100%" height="100%" viewBox="0 0 1280 1141">
-        <image xlink:href="components/background.jpg" x="0" y="0" width="100%" height="100%"></image>
-      </SVG>
-
+  <div>
+    <div class="flip-up-wrapper">
+      <div class="flip-up"></div>
+    </div>
     <div class="flap-info">
         <div class="hidden section" id="indicators">
             <span id="i_zero">&#11044;</span>
@@ -66,7 +62,7 @@
             <span id="i_ten">&#11044;</span>
         </div>
         <div class="hidden section" id="panel-text">
-            <div id="custom-description" class="title is-4"> </div>
+            <div id="custom-description"> </div>
             <div class="hidden" id="zero">
                 <!-- flap description goes here -->
             </div>
@@ -98,17 +94,13 @@
               <!-- flap description goes here -->
             </div>
             <div class="hidden section" id="return">
-          		<button class="button is-small is-black is-inverted is-outlined" type="button" id="return-button">< go back</button>
+          		<button type="button" id="return-button">< go back</button>
       		</div>
-	      	<hr>
-	          <figure class="image is-128x128" style="margin: auto;">
-	            <img src="../assets/logo.png">
-	          </figure>
 	     </div>
 
       <div id="startup">
         
-          <div class="is-scrollable has-text-weight-light" style="height: 400px; border-color: #808080; border-width: 1px; border-style: solid; border-radius: 5px;">
+          <div class="introduction">
           <p>
             Flap anatomies were important, interactive diagrams used for teaching human and animal anatomy in the early modern period.
             These paper technologies allowed medical students, surgeons, and other interested people to visualize the layers of skin, muscle,
@@ -138,15 +130,13 @@
           </p>
           </div>
           <br>
-          <button class="button is-medium" type="button" id="start"> start </button>
+          <button type="button" id="start"> start </button>
           <hr>
-          <h1 class="title is-5" style="color: white;"> Select a Diagram: </h1>
-          <div class="select is-medium">
-              <select onchange="changePage()" id="dropdown">
-                <option value="../diagram1/FlapAnatomy.htm">Diagram 1</option>
-                <option selected value="./FlapAnatomy.htm">Diagram 2</option>
-              </select>
-          </div>
+          <h2> Select a Diagram: </h2>
+          <select id="dropdown" onchange="changePage()">
+            <option value="../diagram1/FlapAnatomy.htm">Diagram 1</option>
+            <option selected value="./FlapAnatomy.htm">Diagram 2</option>
+          </select>
     </div>
   </div>
 </div>
