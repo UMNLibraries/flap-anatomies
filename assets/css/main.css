@@ -216,8 +216,7 @@ flap comonents */
     backface-visibility: hidden;
 }
 
-/* Left direction is not being implemented yet */
-/*.flip-dir-left .back,*/
+.flip-dir-left .back,
 .flip-dir-right .back {
     transform: rotateY(180deg);
 }
@@ -245,23 +244,27 @@ flap comonents */
     transform: rotateY(180deg);
 }
 
-/* These directions have not been implemented yet */
-/*.flip-dir-right .flipped .flipper {
-    transform: rotateY(180deg);
+.flip-dir-left .flipped .flipper {
+    transform: rotateY(-180deg);
 }
 
-.flip-dir-up .flipped .flipper {
+/* These directions have not been implemented yet */
+/*.flip-dir-up .flipped .flipper {
     transform: rotateX(180deg);
 }
 
 .flip-dir-down .flipped .flipper {
     transform: rotateX(-180deg);
-}
-*/
+}*/
+
 
 /* Orient the flipping animation around the edge */
 .flip-dir-right .flipper {
     transform-origin: right center;
+}
+
+.flip-dir-left .flipper {
+    transform-origin: left center;
 }
 
 /* These directions have not been implemented yet */
@@ -271,13 +274,9 @@ flap comonents */
 
 .flip-dir-down .flipper {
     transform-origin: center bottom;
-}
+}*/
 
-.flip-dir-left .flipper {
-    transform-origin: left center;
-}
-
-/*--------------------------*/
+/*--------------------------
 /* ORDERING FLAP COMPONENTS */
 /*--------------------------*/
 

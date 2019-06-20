@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="components/flap-configuration.js"></script>
-<script src="../assets/scripts/load-flaps.js"></script>
-<!-- <script type="x-tmpl-mustache" id="component-markup">
+<script type="x-tmpl-mustache" id="component-markup">
     <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
         {{#component}}
         <div class="flipper">
@@ -23,10 +22,10 @@
         </div>
         {{/component}}
     </div>
-</script> -->
+</script>
 
 <!-- feature detection for HTML5/CSS3 -->
-<!-- <script src="../assets/scripts/flapsheet-embed.js"></script> -->
+<script src="../assets/scripts/flapsheet-embed.js"></script>
 
 <script>
     function changePage() {
@@ -44,12 +43,10 @@
   <header>
       <h1>Early Interactive Books: Japanese Anatomical Flap Book</h1>
   </header>
-  <div class="flex">
-      <SVG width="100%" height="100%" viewBox="0 0 1280 1141">
-        <image xlink:href="components/background_diag1.png" x="0" y="0" width="100%" height="100%"></image>
-        <image xlink:href="components/flap_6.png" x="57.3%" y="7.4%"></image>
-      </SVG>
-
+  <div> 
+    <div class="flip-up-wrapper">
+      <div class="flip-up"></div>
+    </div>
     <div class="flap-info">
         <div class="hidden section" id="indicators">
             <span id="i_zero">&#11044;</span>
@@ -117,7 +114,7 @@
           <button type="button" id="start"> start </button>
           <hr>
           <h2> Select a Diagram: </h2>
-          <select onchange="changePage()">
+          <select id="dropdown" onchange="changePage()">
             <option selected value="./FlapAnatomy.htm">Diagram 1</option>
             <option value="../diagram2/FlapAnatomy.htm">Diagram 2</option>
           </select>
