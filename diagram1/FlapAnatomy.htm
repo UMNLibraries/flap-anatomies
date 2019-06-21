@@ -9,7 +9,7 @@
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="components/flap-configuration.js"></script>
 <script type="x-tmpl-mustache" id="component-markup">
-    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} {{flipDir}}" id="component-{{idx}}">
         {{#component}}
         <div class="flipper">
             <div class="front flip-up-component">

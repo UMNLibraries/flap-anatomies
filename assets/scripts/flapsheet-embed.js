@@ -5,7 +5,7 @@ $(document).ready(function(){
     // Get the wrapper HTML element for the flap anatomy and store it in $wrapper
     var $wrapper = $('.flip-up-wrapper');
 
-    // Configure the wrapper based off our flap configuration. This sets the width, height
+    // Configure the wrapper based off our flap configuration. This sets the width, height,
     // and background image to the appropriate configuration values.
     $wrapper.css({
         'width': FlapConfiguration.background.width,
@@ -14,9 +14,11 @@ $(document).ready(function(){
         'perspective:': FlapConfiguration.background.width
     });
 
+    // Flap Configuration is loaded in as a window variable from another file.
     var flipDir = FlapConfiguration['flip-dir'];
     var baseUrl = FlapConfiguration['base-url'];
 
+    // This is the general flip direction for the entire diagram.
     $wrapper.addClass('flip-dir-' + flipDir);
 
     // Clear out any HTML currently in the target .flip-up element. This ensures we start
@@ -24,7 +26,8 @@ $(document).ready(function(){
     $wrapper.find('.flip-up').empty();
 
     // Mustache is a template system that allows you to specify dynamic markup within HTML.
-    // You can find the template referred to here by searching in FlapAnatomy.htm for component-markup
+    // You can find the template referred to here by searching in FlapAnatomy.htm for component-markup.
+    // Component template is used to create each flap.
     var componentTemplate = $('#component-markup').html();
 
     var idx=1;
@@ -32,7 +35,7 @@ $(document).ready(function(){
     for(var flap in FlapConfiguration.components) {
         var component = FlapConfiguration.components[flap];
         // Create the HTML markup for this component.
-        var $markup = $(Mustache.render(componentTemplate, {'baseUrl': baseUrl, 'idx': idx, 'component': component}));
+        var $markup = $(Mustache.render(componentTemplate, {'baseUrl': baseUrl, 'idx': idx, 'component': component, 'flipDir': flipDir}));
 
         // Apply custom CSS specific to this component. It's necessary to ensure proper positioning
         // and scaling of the components.
