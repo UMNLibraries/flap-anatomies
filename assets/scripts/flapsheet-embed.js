@@ -30,6 +30,7 @@ $(document).ready(function(){
     // Component template is used to create each flap.
     var componentTemplate = $('#component-markup').html();
 
+    // This index is used in generating the mustache flap templates.
     var idx=1;
     // Loop over each component within our configuration file
     for(var flap in FlapConfiguration.components) {
@@ -57,18 +58,27 @@ $(document).ready(function(){
     };
 
     // The last component is just an empty Mustache template that doesn't have any images.
+    // The last component is part of the background image.
     $lastComponent = Mustache.render(componentTemplate, {'idx': idx});
+
+    // Flip-up is nested in flip-up-wrapper and contains all the components.
     $wrapper.find('.flip-up').append($lastComponent);
 
+    // This index is used in the Component function
+	  var index = 0;
 
-	  var index = 0,
-		currentActive = 0,
+    // currentActive indicates the index of the currently active flap
+		currentActive = 0;
+
+    // This is an array of flap objects
 		components = [];
 
     // use retButton to verify where the autoFlip call is coming from
+    // Helps control when sidebar descriptions are seen
     var retButton = false;
 
-    // clicked is the flap you want to navigate to, active is the current flap
+    // Clicked is the index of the flap you want to navigate to, 
+    // active is the index of the current flap
     function autoFlip(clicked, active) {
       if (clicked > active){
           //flip up
@@ -77,9 +87,10 @@ $(document).ready(function(){
           }
 
       } else if (clicked < active) {
-            for (var i = active; i > clicked; i--) {
-                updateCurrentActive('down', 0);
-            }
+          //flip down
+          for (var i = active; i > clicked; i--) {
+              updateCurrentActive('down', 0);
+          }
       }
     }
 
@@ -222,13 +233,13 @@ $(document).ready(function(){
       autoDrag( component , direction, timeout);
 
 
-          if( direction == 'up'  && currentActive < components.length-1 ){
-              currentActive++;
-              changeDescription();
-          } else if (direction == 'down' ){
-              currentActive--;
-              changeDescription();
-          }
+      if( direction == 'up'  && currentActive < components.length-1 ){
+          currentActive++;
+          changeDescription();
+      } else if (direction == 'down' ){
+          currentActive--;
+          changeDescription();
+      }
 	}
 
     /**
