@@ -78,7 +78,10 @@ $(document).ready(function(){
     var retButton = false;
 
     // Clicked is the index of the flap you want to navigate to, 
-    // active is the index of the current flap
+    // active is the index of the current flap.
+    // The 'up' and 'down' directions indicate the direction you are moving through
+    // the sequence.
+    // The for loops are somehow essential for the sidebar nav indicators to work
     function autoFlip(clicked, active) {
       if (clicked > active){
           //flip up
@@ -216,9 +219,14 @@ $(document).ready(function(){
 	function updateCurrentActive( direction , timeout ){
       component = components[currentActive];
 
-      // check if the indicators are hidden, if they are this means the
-      // user has clicked a flap instead of clicking the start button
-      // if retButton is true we do not want to to execute this code because it has already been done
+      // Users can click on a flap, while the indicators are hidden. The indicators are a proxy
+      // for whether user is on the start menu or not. This conditional also accounts for
+      // a user pressing the return button and that button's onclick method eventually calls
+      // this method, while the indicators are hidden but the retButton value is true.
+
+      // If the indicators are hidden and the retButton hasn't been selected, then remove the
+      // start menu and add the description panels.
+      // If retButton is true we do not want to to execute this code because it has already been done.
       if (($("#indicators").hasClass('hidden section') == true) && retButton == false){
           // hide startup screen
           $("#startup").addClass("hidden section");
@@ -231,7 +239,6 @@ $(document).ready(function(){
       // Call the autoDrag function, which triggers the transition for lifting up
       // or dragging down the component
       autoDrag( component , direction, timeout);
-
 
       if( direction == 'up'  && currentActive < components.length-1 ){
           currentActive++;
