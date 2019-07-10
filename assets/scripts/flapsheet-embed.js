@@ -80,7 +80,8 @@ $(document).ready(function(){
     // Clicked is the index of the flap you want to navigate to, 
     // active is the index of the current flap.
     // The 'up' and 'down' directions indicate the direction you are moving through
-    // the sequence.
+    // the sequence. Flipping 'up' means that you are going forward. Flipping 'down' means that you
+    // are going backwards.
     // The for loops are somehow essential for the sidebar nav indicators to work
     function autoFlip(clicked, active) {
       if (clicked > active){
@@ -216,7 +217,7 @@ $(document).ready(function(){
 
   // Helper method for configuring the current active state. currentActive is just maintaining
   // the index of the currently-active component
-	function updateCurrentActive( direction , timeout ){
+	function updateCurrentActive (direction, timeout){
       component = components[currentActive];
 
       // Users can click on a flap, while the indicators are hidden. The indicators are a proxy
@@ -238,59 +239,41 @@ $(document).ready(function(){
       }
       // Call the autoDrag function, which triggers the transition for lifting up
       // or dragging down the component
-      autoDrag( component , direction, timeout);
-
-      if( direction == 'up'  && currentActive < components.length-1 ){
+      autoDrag(component, direction, timeout);
+      // Update currentActive index following the animation.
+      if (direction == 'up' && currentActive < components.length-1){
           currentActive++;
           changeDescription();
-      } else if (direction == 'down' ){
+      } else if (direction == 'down'){
           currentActive--;
           changeDescription();
       }
 	}
 
-    /**
-     * In order to simulate the drag functionality, the flap anatomy makes use of CSS transitions,
-       like shown here (the below is from `flapsheet-embed.css`):
-         .flip-up-component-wrapper,.flip-up-component,.flip-up-back {
-            -webkit-transition:1s ease-in-out;
-            transition:1s ease-in-out;
-            -moz-box-sizing:border-box;
-            box-sizing:border-box;
-            -webkit-backface-visibility:hidden;
-            -ms-backface-visibility:hidden;
-            backface-visibility:hidden;
-            -webkit-perspective:1000;
-            -ms-perspective:1000;
-            perspective:1000
-        }
+    /*In order to simulate the drag functionality, the flap anatomy makes use of CSS transitions,
+      like shown in the 'ANIMATION' section on the 'main.css' file.
 
-       For a bit more info on CSS transitions, you can read the W3C article here: https://www.w3schools.com/css/css3_transitions.asp
+      For a bit more info on CSS transitions, you can read the W3C article here: https://www.w3schools.com/css/css3_transitions.asp
+      Essentially, we set up the CSS transitions to invert the images, flipping them vertically or horizontally.
 
-       Essentially, we set up the CSS transitions to invert the images, flipping them head-to-toe.
-
-       What CSS transitions do is apply transitions (think slideshow transitions) when certain CSS
-       changes affect an element. In this instance, we're setting the height of the flap to 0
-       and the height of the back of the flap to 100%, and what this does is trigger the animation to
-       squish the flap and reveal the back of the flap.
-       You can set `opacity: 1` in flapsheet-embed.css at line 68 (to always show the border around the flap)
-       and see exactly what's happening to the flap.
-
-       This method is reversed when you click on the back of the flap to reveal the flap itself.
-     */
-	function autoDrag( component , direction , timeout ){
+      The flipping animation is implemented by using a class name to signal a change in states which then
+      triggers CSS transitions. This method is reversed when you click on the back of the flap to reveal the flap itself.
+    */
+	function autoDrag (component, direction, timeout){
       // if timeout is 0 then this function is getting called from autoFlip
       // in this case we will not use any timeouts
       if ((timeout == 0) && (direction=="up")) {
         component.self.addClass('flipped');
-        component.self.removeClass('active').css('z-index', 1000 );
-        if( component.self.next( '.flip-up-component-wrapper')[0] ){
-                  $('.previous').removeClass('previous');
-                  component.self.addClass('previous');
-                  component.self.next('.flip-up-component-wrapper').addClass('active');
-       }
+        component.self.removeClass('active').css('z-index', 1000);
+        if(component.self.next('.flip-up-component-wrapper')[0]){
+            $('.previous').removeClass('previous');
+            component.self.addClass('previous');
+            component.self.next('.flip-up-component-wrapper').addClass('active');
+        }
       }
       if ((timeout == 0) && (direction=="down")) {
+        // prevComponent refers to the next flap closest to the top of the diagram,
+        // not necessarily the last active flap.
         var prevComponent;
         prevComponent = components[component.index - 1];
         $('.active').removeClass('active');
@@ -299,18 +282,18 @@ $(document).ready(function(){
         prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
         prevComponent.self.css('z-index', '');
       }
-      if( (timeout != 0) && (direction == 'up') ){
+      if((timeout != 0) && (direction == 'up')){
           component.self.addClass('flipped');
 			    component.self.removeClass('active').css('z-index', 1000 );
 
-          if( component.self.next( '.flip-up-component-wrapper')[0] ){
-				      setTimeout(function(){
-                    $('.previous').removeClass('previous');
-					          component.self.addClass('previous');
-					          component.self.next('.flip-up-component-wrapper').addClass('active');
+          if( component.self.next ('.flip-up-component-wrapper')[0] ){
+				      setTimeout (function(){
+                  $('.previous').removeClass('previous');
+  			          component.self.addClass('previous');
+  			          component.self.next('.flip-up-component-wrapper').addClass('active');
               }, timeout||500);
          }
-      } else if ( (timeout != 0) && (direction == 'down') ){
+      } else if ((timeout != 0) && (direction == 'down')){
 			     var prevComponent;
            prevComponent = components[component.index - 1];
            $('.active').removeClass('active');
@@ -318,7 +301,7 @@ $(document).ready(function(){
 
 			     prevComponent.self.prev('.flip-up-component-wrapper').addClass('previous');
 			     prevComponent.self.css('z-index', '');
-		 } else if (direction == 'last' ){
+		 } else if (direction == 'last'){
 		       component.self.prev('.flip-up-component-wrapper').addClass('previous');
 		 }
 	}
@@ -326,7 +309,7 @@ $(document).ready(function(){
     $(".flap-info").css({'height': FlapConfiguration.background.height});
 
     // when the start button is clicked execute this code
-    $("#start").on( "click", function() {
+    $("#start").on("click", function() {
         // hide startup elements
         $("#startup").addClass("hidden section");
         // show flap information and indicators
