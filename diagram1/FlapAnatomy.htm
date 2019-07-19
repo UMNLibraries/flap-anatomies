@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <script src="../assets/scripts/mustache.min.js"></script>
 <script src="components/flap-configuration.js"></script>
+
+<!-- Mustache template: double braces indicate variables passed in through the mustache render method called in flapsheet-embed.js. {{^variable}} means if the argument is missing that variable, then add the information before {{/variable}}. {{#variable}} indicates a section where if the argument exists, then whatever is between it and {{/variable}} is rendered.
+Documentation: https://mustache.github.io/mustache.5.html -->
 <script type="x-tmpl-mustache" id="component-markup">
-    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} right" id="component-{{idx}}">
+    <div class="flip-up-component-wrapper component-{{idx}}{{^component}} last{{/component}} {{flipDir}}" id="component-{{idx}}">
         {{#component}}
         <div class="flipper">
             <div class="front flip-up-component">
